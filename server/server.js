@@ -11,9 +11,6 @@
 
 Meteor.methods({
 	join: function(game_id) {
-		console.log(displayName(Meteor.user()));
-		console.log(game_id);
-
 		Players.insert({
 			name: displayName(Meteor.user()),
 			game_id: game_id,
@@ -21,8 +18,6 @@ Meteor.methods({
 		});
 	},
 	leave: function(game_id) {
-		console.log(game_id);
-		
 		Players.remove({ user_id: Meteor.userId() });
 	}
 });
