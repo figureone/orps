@@ -76,7 +76,7 @@ Template.staging.show = function () {
 
 Template.staging.chats = function () {
 	var chats = Chats.find({ game_id: game() }, { sort: { 'timestamp': -1 }, limit: 5 });
-	console.log(chats);
+	// we need to use reverse ordering to grab just the last few chats, but then we need to reverse the order again so the chats display oldest to newest. hence the mess below.
 	var reverse_chats = new Array();
 	chats.forEach( function (data) {
 		reverse_chats.push(data);
