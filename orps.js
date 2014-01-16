@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   Template.hello.greeting = function () {
-    return "Welcome to studly.";
+    return "Welcome to Outer Rim Postal Service.";
   };
 
   Template.hello.events({
