@@ -20,9 +20,9 @@
 
 
 <template name="header">
-	<div id="header" class="row-fluid">
+	<div id="header" class="row-fluid page-header">
 		<div class="span8">
-			<h1>Outer Rim Postal Service</h1>
+			<h1>Outer Rim Postal Service <small>ORPS</small></h1>
 		</div>
 		<div class="span4">
 			<div style="float: right; margin-right: 10px;">
@@ -35,28 +35,35 @@
 
 <template name="lobby">
 	{{#if show }}
-		<ul class="games">
-			{{#each games }}
-				{{> game}}
-			{{/each }}
-		</ul>
+		<div class="row-fluid">
+			<ul class="games unstyled text-center">
+				{{#each games }}
+					{{> game}}
+				{{/each }}
+			</ul>
+		</div>
 	{{/if}}
 </template>
 
 <template name="game">
-	<li class="game">
-		<div class="game-name">{{name}}</div>
-		<div class="game-description">{{description}}</div>
-		<div class="game-player-count"></div>
-		{{#if currentUser }}
-			<button class="game-join">Join</button>
-		{{/if}}
+	<li class="game span4">
+		<div class="thumbnail">
+			<div class="caption">
+				<h2 class="game-name">{{name}}</h2>
+				<p class="game-description">{{description}}</p>
+				<p class="game-player-count">Players: <span class="badge badge-info">0</span></p>
+				{{#if currentUser }}
+					<input type="button" class="btn btn-primary btn-large game-join" value="Join" />
+				{{/if}}
+			</div>
+		</div>
 	</li>
 </template>
 
 
 <template name="staging">
 	{{#if show }}
+	<input type="button" class="btn btn-primary btn-large game-leave" value="Return to Lobby" />
 	{{/if}}
 </template>
 
@@ -83,8 +90,14 @@
 	<div id="debug" class="row-fluid">
 		<p>Logged in users:</p>
 		<ul>
-			{{#each debug_logged_in_users}}
+			{{#each debug_logged_in_users }}
 				<li>{{profile.name}} ({{services.google.email}}{{emails.0.address}}) ({{_id}})</li>
+			{{/each}}
+		</ul>
+		<p>Players in games:</p>
+		<ul>
+			{{#each players }}
+				<li>{{name}}, Game: {{game_id}} ({{_id}})</li>
 			{{/each}}
 		</ul>
 	</div>

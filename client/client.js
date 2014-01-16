@@ -3,13 +3,14 @@
 //
 
 var player = function () {
-	return Players.findOne(Session.get('player_id'));
+	return Players.findOne({ user_id: Meteor.userId() });
 }
 
 var game = function () {
 	var me = player();
 	return me && me.game_id;// && Games.findOne(me.game_id);
 }
+
 
 //
 // Lobby template
@@ -30,6 +31,13 @@ Template.lobby.show = function () {
 // 	return players;
 // }
 
+Template.lobby.events({
+	'click .game-join': function(event, template) {
+		Meteor.call('join', this._id);
+	}
+});
+
+
 //
 // Games template
 // Show details on a room in the lobby
@@ -46,18 +54,31 @@ Template.lobby.games = function () {
 
 Template.staging.show = function () {
 	// Only show if user is logged in
-	return Meteor.user() && game();
+	return Meteor.userId() && game();
 }
 
+Template.staging.events({
+	'click .game-leave': function(event, template) {
+		Meteor.call('leave', game());
+	}
+});
 
-//
-// Debug template
-//
-
+////////////////////////////////
+////////////////////////////////
+// Debug template REMOVE REMOVE
+////////////////////////////////
 Template.debug.debug_logged_in_users = function () {
-	console.log(Meteor.users.find());
 	return Meteor.users.find();
 }
+Template.debug.players = function () {
+	var players = Players.find();
+	return players;
+}
+// END DEBUG REMOVE /////////////
+////////////////////////////////
+////////////////////////////////
+
+
 
 
 //
