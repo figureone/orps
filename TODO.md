@@ -1,5 +1,6 @@
 # Google Login
 ## DEV Credentials: (not secret; only for localhost)
+https://cloud.google.com/console/project
 1. Client ID	770595001205.apps.googleusercontent.com
 1. Email address	770595001205@developer.gserviceaccount.com
 1. Client secret	7aG-fXeRXTAYvoxHS-Yac_rR
