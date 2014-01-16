@@ -19,7 +19,7 @@ Meteor.methods({
 	},
 	leave: function(game_id) {
 		Players.remove({ user_id: Meteor.userId() });
-	}
+	},
 });
 
 //

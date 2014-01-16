@@ -11,6 +11,18 @@ var game = function () {
 	return me && me.game_id;// && Games.findOne(me.game_id);
 }
 
+var displayName = function (user) {
+	if (user.profile && user.profile.name) {
+		return user.profile.name;
+	}
+	if (user.google && user.google.name) {
+		return user.google.name;
+	}
+	if (user.emails && user.emails.length > 0 && user.emails[0].address) {
+		return user.emails[0].address;
+	}
+	return 'Default User';
+};
 
 //
 // Lobby template
@@ -62,11 +74,48 @@ Template.staging.show = function () {
 	return Meteor.userId() && game();
 }
 
+Template.staging.chats = function () {
+	var chats = Chats.find({ game_id: game() }, { sort: { 'timestamp': -1 }, limit: 5 });
+	console.log(chats);
+	var reverse_chats = new Array();
+	chats.forEach( function (data) {
+		reverse_chats.push(data);
+	});
+	reverse_chats.reverse();
+	return reverse_chats;
+}
+
 Template.staging.events({
-	'click .game-leave': function(event, template) {
+	'click .game-leave': function (event, template) {
 		Meteor.call('leave', game());
+	},
+	'keyup .staging-chat-input': function (event, template) {
+		if ( event.which == 13) { // eventnter key
+			event.preventDefault();
+			var message = $('input.staging-chat-input').val().trim();
+			Chats.insert({
+				name: displayName(Meteor.user()),
+				game_id: game(),
+				message: message,
+				timestamp: new Date().getTime(),
+			});
+			$('input.staging-chat-input').val('').focus();
+		}
 	}
 });
+
+//
+// Chat template
+//
+
+Template.chat.timestamp_formatted = function () {
+	var time = new Date(this.timestamp);
+	if (time.getHours() > 12) {
+		return time.getHours() - 12 + ':' + time.getMinutes() + 'pm';
+	} else {
+		return time.getHours() + ':' + time.getMinutes() + 'am';
+	}
+}
 
 ////////////////////////////////
 ////////////////////////////////
