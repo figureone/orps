@@ -3,12 +3,21 @@
 </head>
 
 <body>
-	{{> header}}
-	{{> animations}}
-	{{> captions}}
-	{{> inputs}}
-	{{> footer}}
+	{{> header }}
+
+	{{> lobby }}
+
+	{{> staging }}
+
+	{{> animations }}
+	{{> captions }}
+	{{> inputs }}
+
+	{{> footer }}
+
+	{{> debug }}
 </body>
+
 
 <template name="header">
 	<div id="header" class="row-fluid">
@@ -23,6 +32,35 @@
 	</div>
 </template>
 
+
+<template name="lobby">
+	{{#if show }}
+		<ul class="games">
+			{{#each games }}
+				{{> game}}
+			{{/each }}
+		</ul>
+	{{/if}}
+</template>
+
+<template name="game">
+	<li class="game">
+		<div class="game-name">{{name}}</div>
+		<div class="game-description">{{description}}</div>
+		<div class="game-player-count"></div>
+		{{#if currentUser }}
+			<button class="game-join">Join</button>
+		{{/if}}
+	</li>
+</template>
+
+
+<template name="staging">
+	{{#if show }}
+	{{/if}}
+</template>
+
+
 <template name="animations">
 </template>
 
@@ -32,11 +70,23 @@
 <template name="inputs">
 </template>
 
+
 <template name="footer">
 	<div id="footer" class="row-fluid">
-		<div class="span9">
-			<h1>Hello World!</h1>
-			<input type="button" value="Click" />
+		<div class="span12">
+			<small>The Outer Rim Postal Service is a game created by <a href="http://www.linkedin.com/in/paulrryan/">Paul Ryan</a> and Justin Hedani as part of the <a href="https://dcdc.coe.hawaii.edu">DCDC</a> Project Jam, January 2014.</small>
 		</div>
 	</div>
 </template>
+
+<template name="debug">
+	<div id="debug" class="row-fluid">
+		<p>Logged in users:</p>
+		<ul>
+			{{#each debug_logged_in_users}}
+				<li>{{profile.name}} ({{services.google.email}}{{emails.0.address}}) ({{_id}})</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+

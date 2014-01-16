@@ -7,3 +7,8 @@ https://cloud.google.com/console/project
 1. Redirect URIs	http://localhost:3000/_oauth/google?close
 1. Javascript Origins	http://localhost:3000/
 
+# Seed Data
+
+## Games
+Games.insert({name: "Art 175", description: "Study Room for ART 175", players: {player_id: 1, name: "Bob Dole"}})
+Games.insert({name: "Empty Room", description: "Study Room for existentialism", players: {}})
