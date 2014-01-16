@@ -85,6 +85,18 @@ Template.staging.chats = function () {
 	return reverse_chats;
 }
 
+Template.staging.game_name = function () {
+	var me = player();
+	var game = Games.findOne(me.game_id);
+	return game.name;
+}
+
+Template.staging.game_description = function () {
+	var me = player();
+	var game = Games.findOne(me.game_id);
+	return game.description;
+}
+
 Template.staging.events({
 	'click .game-leave': function (event, template) {
 		Meteor.call('leave', game());
