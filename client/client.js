@@ -22,6 +22,11 @@ Template.lobby.show = function () {
 	return ! game();
 };
 
+Template.lobby.games = function () {
+	var games = Games.find();
+	return games;
+}
+
 // Template.lobby.waiting = function () {
 // 	var players = Players.find({
 // 		_id: { $ne: Session.get('player_id') },
@@ -43,9 +48,9 @@ Template.lobby.events({
 // Show details on a room in the lobby
 //
 
-Template.lobby.games = function () {
-	var games = Games.find();
-	return games;
+Template.game.player_count = function () {
+	var players_in_game = Players.find({ game_id: this._id }).count();
+	return players_in_game;
 }
 
 //
