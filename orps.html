@@ -3,20 +3,40 @@
 </head>
 
 <body>
-	{{> accounts}}
-	{{> hello}}
+	{{> header}}
+	{{> animations}}
+	{{> captions}}
+	{{> inputs}}
+	{{> footer}}
 </body>
 
-<template name="accounts">
-	<div class="span5">
-		<div style="float: right">
-			{{loginButtons align="right"}}
+<template name="header">
+	<div id="header" class="row-fluid">
+		<div class="span8">
+			<h1>Outer Rim Postal Service</h1>
+		</div>
+		<div class="span4">
+			<div style="float: right; margin-right: 10px;">
+				{{loginButtons align="right"}}
+			</div>
 		</div>
 	</div>
 </template>
 
-<template name="hello">
-	<h1>Hello World!</h1>
-	{{greeting}}
-	<input type="button" value="Click" />
+<template name="animations">
+</template>
+
+<template name="captions">
+</template>
+
+<template name="inputs">
+</template>
+
+<template name="footer">
+	<div id="footer" class="row-fluid">
+		<div class="span9">
+			<h1>Hello World!</h1>
+			<input type="button" value="Click" />
+		</div>
+	</div>
 </template>
