@@ -211,9 +211,10 @@
 </template>
 
 <template name="answering">
-	answering.
 	<div id="animations">
-			<div class="avatar commander eva-waiting space-hover"></div>
+		{{#each players }}
+			{{> answering_player }}
+		{{/each}}
 	</div>
 	<div id="captions">
 	</div>
@@ -221,6 +222,12 @@
 	</div>
 	<div class="pdv flipped"></div>
 </template>
+<template name="answering_player">
+	<div class="avatar commander {{eva_status}} space-hover player-{{user_id}}">
+		{{display_name}}
+	</div>
+</template>
+
 
 <template name="results">
 	results.

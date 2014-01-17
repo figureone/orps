@@ -319,6 +319,33 @@ Template.writing_player.display_name = function () {
 	return displayName(player);
 }
 
+
+//
+// Answering template
+//
+
+Template.answering.players = function () {
+	var round = current_round();
+	var players = Players.find( { _id: { $in: round.round_players } } );
+	return players;
+}
+
+Template.answering.btn_primary_or_success = function () {
+	var me = player();
+	return (me && me.status === 'done') ? 'btn-success' : 'btn-primary';
+}
+
+Template.answering_player.eva_status = function () {
+	var player = get_player(this._id);
+	return (player && player.status === 'done') ? 'eva-done' : 'eva-waiting';
+}
+
+Template.answering_player.display_name = function () {
+	var player = get_player(this._id);
+	return displayName(player);
+}
+
+
 ////////////////////////////////
 ////////////////////////////////
 // Debug template REMOVE REMOVE
