@@ -46,6 +46,7 @@ Meteor.methods({
 				timestamp: new Date().getTime(),
 				status: 'waiting',
 				round_players: [],
+				clock: 0,
 			});
 			var round = Rounds.findOne({_id: round_id});
 		}
@@ -59,7 +60,16 @@ Meteor.methods({
 		// Move onto game if we have enough players
 		round = Rounds.findOne({_id: round._id});
 		if (round && round.round_players.length > 1) {
-			Rounds.update( round._id, { $set: { status: 'loading' } } );
+			var clock = 15;
+			Rounds.update( round._id, { $set: { status: 'loading', clock: clock } } );
+			var interval = Meteor.setInterval(function () {
+				clock -= 5;
+				Rounds.update( round._id, { $set: { clock: clock } } );
+				if (clock < 1) {
+					Meteor.clearInterval(interval);
+					Rounds.update( round._id, { $set: { status: 'writing' } } );
+				}
+			}, 5000);
 		}
 	},
 	not_ready: function () {

@@ -206,6 +206,15 @@ Template.orps.show = function () {
 	return in_round();
 }
 
+Template.orps.clock = function () {
+	var round = current_round();
+	if ( ! round.clock)
+		round.clock = 0;
+	var seconds = round.clock % 60;
+	var minutes = parseInt(round.clock / 60);
+	return minutes + ':' + ('0' + seconds).slice(-2);
+}
+
 Template.orps.title = function () {
 	var title = '';
 	var round = current_round();
@@ -310,10 +319,45 @@ Template.writing_player.display_name = function () {
 	return displayName(player);
 }
 
+
+//
+// Answering template
+//
+
+Template.answering.players = function () {
+	var round = current_round();
+	var players = Players.find( { _id: { $in: round.round_players } } );
+	return players;
+}
+
+Template.answering.btn_primary_or_success = function () {
+	var me = player();
+	return (me && me.status === 'done') ? 'btn-success' : 'btn-primary';
+}
+
+Template.answering_player.eva_status = function () {
+	var player = get_player(this._id);
+	return (player && player.status === 'done') ? 'eva-done' : 'eva-waiting';
+}
+
+Template.answering_player.display_name = function () {
+	var player = get_player(this._id);
+	return displayName(player);
+}
+
+
 ////////////////////////////////
 ////////////////////////////////
 // Debug template REMOVE REMOVE
 ////////////////////////////////
+Template.debug.show = function () {
+	var me = Meteor.user();
+	if (me.services && me.services.google && me.services.google.email && ( me.services.google.email === 'prar@hawaii.edu' || me.services.google.email === 'jkhedani@hawaii.edu' ) ) {
+		return true;
+	}
+	return false;
+
+}
 Template.debug.debug_logged_in_users = function () {
 	return Meteor.users.find();
 }
