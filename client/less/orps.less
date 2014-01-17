@@ -247,12 +247,16 @@ body {
 		float: right;
 		#login-buttons {			
 			a {
+				color: #FFF;
 				display: block;
-				padding: 10px;
-				background: url('/options-gear.png') top right no-repeat;
+				padding: 10px 0;
 			}
 		}
 	}
+}
+#footer {
+	text-align: center;
+	padding: 0 80px;
 }
 // Logo
 .logo {
@@ -263,9 +267,9 @@ body {
 	&.large {
 		width: 450px;
 		height: 198px;
-		margin: 0 auto;
-		padding: 40px;
-		background: url('/logo-large.png') fadeout(@glassGreen, 40%) center center no-repeat;
+		margin: 0 0 0 56px;
+		padding: 40px 39px 98px 38px;
+		background: url('/logo-large.png') fadeout(@glassGreen, 40%) center 50px no-repeat;
 	}
 }
 // CTA Buttons
@@ -304,7 +308,7 @@ body {
 /**
  *	Typography
  */
-a { text-decoration: none; }
+a { color: @glassGreen; text-decoration: none; }
 h2.title-bar {
 	display: block;
 	padding: 20px;
@@ -345,22 +349,38 @@ input, textarea {
  *	Home / Lobby Styles
  *	Template #1
  */
-.lobby {
+#main.game-state-lobby {
+	.user-options-container {
+	position: relative;
+	z-index: 1;
+		#login-buttons {
+			float: right;
+			margin: 20px 95px 15px 0;
+			a { color: #FFF; }
+		}
+	}
 	.title-box {
 		width: 640px;
-		height: 335px;
+		height: 383px;
+		z-index: 0;
+		position: relative;
 		background: url('/lobby-title-box.png') bottom center;
-		h1 { display: block; margin: 0 auto; }
+		h1, span { display: block; text-align: center; }
+		h1 { margin-top: -90px; }
+		span { margin-top: -15px; }
 	}
+	h2.title-bar { margin: -29px 0 10px 0; z-index: -99; padding: 47px 20px 20px; }
 	ul.games {
 		.clearfix();
 		padding: 0;
 		li {
 			background: fadeout(@glassGreen, 40%);
 			list-style: none;
-			width: 50%;
+			width: 49%;
 			float: left;
+			margin-left: 2%;
 			text-align: center;
+			&:first-child { margin: 0; }
 			.btn-primary { width: 100%; }
 		}
 	}
@@ -396,10 +416,20 @@ input, textarea {
 	}
 	.job-cube-contents {
 		background: fadeout(@glassGreen, 40%);
+		.clearfix();
+		input.game-leave, input.game-start { float: right; }
+		input.game-leave { font-size: 18px; }
+		h2 {
+			float: left;
+			margin-left: 25px;
+			margin-top: 15px;
+			small { display: block; }
+		}
 	}
 	.primary-interface {
 		background: lighten(@grayDark, 40%);
 		ul.tabs {
+			margin: 0;
 			padding: 0;
 			.clearfix();
 			li {
@@ -415,11 +445,26 @@ input, textarea {
 				}
 			}
 		}
+		#commboard {
+			padding: 20px;
+			.input-append {
+				margin-top: 15px;
+				.clearfix();
+				.staging-chat-input { float: left; width: 488px; padding: 20px; }
+				.staging-chat-send { float: right; }
+			}
+		}
 	}
 
 	#animations {
 		.clearfix();
-		.avatar { float: left; }
+		clear: left;
+		position: relative;
+		min-height: 300px !important;
+		.avatar {
+			position: absolute;
+			bottom: -4px;
+		}
 	}
 
 }

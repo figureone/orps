@@ -24,7 +24,7 @@
 
 <template name="header">
 	<div id="header" class="page-header">
-			<div class="logo"></div>			
+			<a href="#" class="game-leave"><div class="logo"></div></a>			
 			<div class="user-options-container">
 				{{loginButtons}}
 			</div>
@@ -38,21 +38,21 @@
 	<div class="user-options-container">
 		{{loginButtons}}
 	</div>
-	<div class="lobby">
-		<div class="title-box">
-			<div class="logo large"></div>
-			<h1>Outer Rim Postal Service</h1>
-		</div>
-		<h2 class="title-bar">Current Postings</h2>
-		<ul class="games">
-			{{#each games }}
-				{{> game}}
-			{{/each }}
-		</ul>
 
-		<div id="floater-one" class="avatar commander eva rotate-right"></div>
-		<div id="floater-two" class="avatar commander eva drift-left"></div>
+	<div class="title-box">
+		<div class="logo large"></div>
+		<h1>Outer Rim Postal Service</h1>
+		<span>&copy; 2014</span>
 	</div>
+	<h2 class="title-bar">Current Postings</h2>
+	<ul class="games">
+		{{#each games }}
+			{{> game}}
+		{{/each }}
+	</ul>
+
+	<div id="floater-one" class="avatar commander eva rotate-right"></div>
+	<div id="floater-two" class="avatar commander eva drift-left"></div>
 	{{/if}}
 </template>
 
@@ -75,16 +75,20 @@
 <template name="staging">
 	{{#if show }}
 
+	{{> header }}
+
 	<!-- Job Cube & Contents -->
 	<div class="job-cube"></div>
 	<div class="job-cube-contents">
-		<input type="button" class="btn btn-primary btn-large game-leave" value="Return to Lobby" />
-		<h3 class="game-name">{{game_name}} <small>{{game_description}}</small></h3>
+
+		<input type="button" class="btn {{btn_primary_or_success}} btn-large game-start" value="Ready Up!" />
+		<input type="button" class="btn game-leave" value="Return to Lobby" />
+		<h2 class="game-name">{{game_name}} <small>{{game_description}}</small></h2>
 	
 		<div id="animations">
-			<div class="avatar commander standing small walk-short-left"></div>
-			<div class="avatar commander standing small"></div>
-			<div class="avatar commander standing small"></div>
+			<div class="avatar commander standing small walk-short-left" style="left: 200px;"></div>
+			<div class="avatar commander standing small" style="left: 40px;"></div>
+			<div class="avatar commander standing small" style="left: 80px;"></div>
 		</div>
 	<div>
 
@@ -107,9 +111,6 @@
 		<!-- Completed Games -->
 		<div id="#completedGames" class="staging-completed-games"></div>
 	</div>
-
-	<input type="button" class="btn btn-primary btn-large game-leave" value="Return to Lobby" />
-	<input type="button" class="btn {{btn_primary_or_success}} btn-large game-start" value="Ready Up!" />
 
 	{{/if}}
 </template>
@@ -223,9 +224,7 @@
 
 <template name="footer">
 	<div id="footer" class="row-fluid">
-		<div class="span12">
-			<small>The Outer Rim Postal Service is a game created by <a href="http://www.linkedin.com/in/paulrryan/">Paul Ryan</a> and Justin Hedani as part of the <a href="https://dcdc.coe.hawaii.edu">DCDC</a> Project Jam, January 2014.</small>
-		</div>
+		<small>The Outer Rim Postal Service is a game created by <a href="http://www.linkedin.com/in/paulrryan/">Paul Ryan</a> and Justin Hedani as part of the <a href="https://dcdc.coe.hawaii.edu">DCDC</a> Project Jam, January 2014.</small>
 	</div>
 </template>
 

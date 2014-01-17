@@ -257,9 +257,13 @@ body {
   float: right;
 }
 #header .user-options-container #login-buttons a {
+  color: #FFF;
   display: block;
-  padding: 10px;
-  background: url('/options-gear.png') top right no-repeat;
+  padding: 10px 0;
+}
+#footer {
+  text-align: center;
+  padding: 0 80px;
 }
 .logo {
   width: 102px;
@@ -270,9 +274,9 @@ body {
 .logo.large {
   width: 450px;
   height: 198px;
-  margin: 0 auto;
-  padding: 40px;
-  background: url('/logo-large.png') rgba(113, 219, 187, 0.6) center center no-repeat;
+  margin: 0 0 0 56px;
+  padding: 40px 39px 98px 38px;
+  background: url('/logo-large.png') rgba(113, 219, 187, 0.6) center 50px no-repeat;
 }
 .btn {
   display: block;
@@ -311,6 +315,7 @@ body {
  *	Typography
  */
 a {
+  color: #71dbbb;
   text-decoration: none;
 }
 h2.title-bar {
@@ -351,43 +356,72 @@ textarea {
  *	Home / Lobby Styles
  *	Template #1
  */
-.lobby .title-box {
+#main.game-state-lobby .user-options-container {
+  position: relative;
+  z-index: 1;
+}
+#main.game-state-lobby .user-options-container #login-buttons {
+  float: right;
+  margin: 20px 95px 15px 0;
+}
+#main.game-state-lobby .user-options-container #login-buttons a {
+  color: #FFF;
+}
+#main.game-state-lobby .title-box {
   width: 640px;
-  height: 335px;
+  height: 383px;
+  z-index: 0;
+  position: relative;
   background: url('/lobby-title-box.png') bottom center;
 }
-.lobby .title-box h1 {
+#main.game-state-lobby .title-box h1,
+#main.game-state-lobby .title-box span {
   display: block;
-  margin: 0 auto;
+  text-align: center;
 }
-.lobby ul.games {
+#main.game-state-lobby .title-box h1 {
+  margin-top: -90px;
+}
+#main.game-state-lobby .title-box span {
+  margin-top: -15px;
+}
+#main.game-state-lobby h2.title-bar {
+  margin: -29px 0 10px 0;
+  z-index: -99;
+  padding: 47px 20px 20px;
+}
+#main.game-state-lobby ul.games {
   padding: 0;
 }
-.lobby ul.games:before,
-.lobby ul.games:after {
+#main.game-state-lobby ul.games:before,
+#main.game-state-lobby ul.games:after {
   content: " ";
   display: table;
 }
-.lobby ul.games:after {
+#main.game-state-lobby ul.games:after {
   clear: both;
 }
-.lobby ul.games li {
+#main.game-state-lobby ul.games li {
   background: rgba(113, 219, 187, 0.6);
   list-style: none;
-  width: 50%;
+  width: 49%;
   float: left;
+  margin-left: 2%;
   text-align: center;
 }
-.lobby ul.games li .btn-primary {
+#main.game-state-lobby ul.games li:first-child {
+  margin: 0;
+}
+#main.game-state-lobby ul.games li .btn-primary {
   width: 100%;
 }
-.lobby #floater-one {
+#main.game-state-lobby #floater-one {
   position: absolute;
   top: 440px;
   left: -320px;
   z-index: -9;
 }
-.lobby #floater-two {
+#main.game-state-lobby #floater-two {
   position: fixed;
   top: 120px;
   right: -220px;
@@ -410,10 +444,34 @@ textarea {
 #main.game-state-staging .job-cube-contents {
   background: rgba(113, 219, 187, 0.6);
 }
+#main.game-state-staging .job-cube-contents:before,
+#main.game-state-staging .job-cube-contents:after {
+  content: " ";
+  display: table;
+}
+#main.game-state-staging .job-cube-contents:after {
+  clear: both;
+}
+#main.game-state-staging .job-cube-contents input.game-leave,
+#main.game-state-staging .job-cube-contents input.game-start {
+  float: right;
+}
+#main.game-state-staging .job-cube-contents input.game-leave {
+  font-size: 18px;
+}
+#main.game-state-staging .job-cube-contents h2 {
+  float: left;
+  margin-left: 25px;
+  margin-top: 15px;
+}
+#main.game-state-staging .job-cube-contents h2 small {
+  display: block;
+}
 #main.game-state-staging .primary-interface {
   background: #8e8e8e;
 }
 #main.game-state-staging .primary-interface ul.tabs {
+  margin: 0;
   padding: 0;
 }
 #main.game-state-staging .primary-interface ul.tabs:before,
@@ -438,6 +496,33 @@ textarea {
 #main.game-state-staging .primary-interface ul.tabs li a {
   color: #FFF;
 }
+#main.game-state-staging .primary-interface #commboard {
+  padding: 20px;
+}
+#main.game-state-staging .primary-interface #commboard .input-append {
+  margin-top: 15px;
+}
+#main.game-state-staging .primary-interface #commboard .input-append:before,
+#main.game-state-staging .primary-interface #commboard .input-append:after {
+  content: " ";
+  display: table;
+}
+#main.game-state-staging .primary-interface #commboard .input-append:after {
+  clear: both;
+}
+#main.game-state-staging .primary-interface #commboard .input-append .staging-chat-input {
+  float: left;
+  width: 488px;
+  padding: 20px;
+}
+#main.game-state-staging .primary-interface #commboard .input-append .staging-chat-send {
+  float: right;
+}
+#main.game-state-staging #animations {
+  clear: left;
+  position: relative;
+  min-height: 300px !important;
+}
 #main.game-state-staging #animations:before,
 #main.game-state-staging #animations:after {
   content: " ";
@@ -447,7 +532,8 @@ textarea {
   clear: both;
 }
 #main.game-state-staging #animations .avatar {
-  float: left;
+  position: absolute;
+  bottom: -4px;
 }
 /**
  *	Game Styles
