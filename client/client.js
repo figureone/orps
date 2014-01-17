@@ -345,15 +345,18 @@ Template.answering.events({
 		var round = current_round();
 		Session.set("writer", writer_user_id);
 		Meteor.call('get_question', writer_user_id, round._id, function (error, result) {
+			// Show the question input fields (hidden at start when no player is selected)
+			$('#inputs').show(500);
+
 			$('#question').html(result.question);
 
 			// Hide "wrong answer" red x (only show when grading my question)
-			$('.mark-wrong').hide();
+			$('.mark-wrong').hide(250);
 
 			// if this is my question, show other's responses and grading buttons
 			if (writer_user_id == Meteor.userId()) {
 				// Show "wrong answer" red x (only show when grading my question)
-				$('.mark-wrong').show();
+				$('.mark-wrong').show(250);
 
 				Meteor.call('get_answers', result.player_id, result._id, function (error, result) {
 					if (result && result[0]) {
