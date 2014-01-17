@@ -223,7 +223,7 @@ Template.orps.title = function () {
 	else if ( round.status === 'writing')
 		title = 'The EXAM was destroyed! We need to recreate it! Everyone, create a QUESTION!';
 	else if ( round.status === 'answering')
-		title = 'Let\'s make sure our questions are good enough! Answer your teammate\'s QUESTIONS!';
+		title = 'Pick a teammate and answer their QUESTION! Grade your question when teammates have answered it!';
 	else if ( round.status === 'results')
 		title = 'Great job, kiddo!';
 	return title;
