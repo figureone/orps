@@ -347,10 +347,15 @@ Template.answering.events({
 		Meteor.call('get_question', writer_user_id, round._id, function (error, result) {
 			$('#question').html(result.question);
 
+			// Hide "wrong answer" red x (only show when grading my question)
+			$('.mark-wrong').hide();
+
 			// if this is my question, show other's responses and grading buttons
 			if (writer_user_id == Meteor.userId()) {
+				// Show "wrong answer" red x (only show when grading my question)
+				$('.mark-wrong').show();
+
 				Meteor.call('get_answers', result.player_id, result._id, function (error, result) {
-					console.log(result);
 					if (result && result[0]) {
 						if (result[0].is_correct) {
 							$('#answer_a_correct').removeClass('off').addClass('on');
