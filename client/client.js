@@ -336,6 +336,10 @@ Template.answering.btn_primary_or_success = function () {
 }
 
 Template.answering.events({
+	'click .mark-correct, click .mark-wrong': function (event, template) {
+		$(event.srcElement).siblings('.on').removeClass('on').addClass('off');
+		$(event.srcElement).removeClass('off').addClass('on');
+	},
 	'click .avatar': function (event, template) {
 		var writer_user_id = $(event.srcElement).attr('id');
 		var round = current_round();
