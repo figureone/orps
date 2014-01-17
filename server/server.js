@@ -59,7 +59,7 @@ Meteor.methods({
 
 		// Move onto game if we have enough players
 		round = Rounds.findOne({_id: round._id});
-		if (round && round.round_players.length > 1) {
+		if (round && round.round_players.length > 3) {
 			var clock = 15;
 			Rounds.update( round._id, { $set: { status: 'loading', clock: clock } } );
 			var interval = Meteor.setInterval(function () {
