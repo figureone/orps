@@ -187,8 +187,11 @@
  */
 .avatar {
   width: 108px;
-  height: 210px;
+  height: 228px;
+  text-align: center;
   background: url('/avatar-commander.png') no-repeat;
+  float: left;
+  margin-left: 50px;
 }
 .avatar.small {
   width: 54px;
@@ -199,7 +202,10 @@
   background: url('/avatar-commander.png') no-repeat;
 }
 .avatar.commander.eva {
-  background-position: -159px 0;
+  background-position: -159px 18px;
+}
+.avatar.commander.eva-done {
+  background-position: -320px 18px;
 }
 .pdv.small {
   width: 351px;
@@ -344,6 +350,9 @@ textarea {
   padding: 10px;
   margin-bottom: 15px;
 }
+.answer input[type="text"] {
+  padding-left: 45px;
+}
 .answer input[type='button'] {
   width: 38px;
   height: 38px;
@@ -351,6 +360,18 @@ textarea {
   position: absolute;
   margin: -53px 0;
   right: 0;
+}
+.answer input[type='button'].on {
+  background-color: #46c9d3;
+}
+.answer span {
+  width: 21px;
+  height: 28px;
+  background-color: #71dbbb;
+  position: absolute;
+  margin: 0;
+  padding: 10px 0 0 14px;
+  left: 0;
 }
 /**
  *	Home / Lobby Styles
