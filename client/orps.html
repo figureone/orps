@@ -157,7 +157,7 @@
 	writing.
 	<div id="animations">
 		{{#each players }}
-			<div class="avatar commander eva space-hover" style="float:left;margin-left:50px">{{> writing_name }}</div>
+			{{> writing_player }}
 		{{/each}}
 	</div>
 	<div id="captions">
@@ -170,16 +170,19 @@
 		</div>
 
 		<div class="answer">
+			<span class="letter">A</span>
 			<input type="text" id="answer_a" value="" placeholder="Write an answer here." />
 			<input type="button" id="answer_a_correct" class="off" value="*" />
 		</div>
 
 		<div class="answer">
+			<span class="letter">B</span>
 			<input type="text" id="answer_b" value="" placeholder="Don't forget to mark which one is correct!" />
 			<input type="button" id="answer_a_correct" class="off" value="*" />
 		</div>
 		
 		<div class="answer">
+			<span class="letter">C</span>
 			<input type="text" id="answer_c" value="" placeholder="Hit the Ready Up button when you're done!" />
 			<input type="button" id="answer_a_correct" class="off" value="*" />
 		</div>
@@ -187,8 +190,10 @@
 	</div>
 	<div class="pdv flipped"></div>
 </template>
-<template name="writing_name">
-	{{display_name}}
+<template name="writing_player">
+	<div class="avatar commander eva space-hover" style="float:left;margin-left:50px">
+		{{display_name}}
+	</div>
 </template>
 
 <template name="answering">

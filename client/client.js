@@ -271,9 +271,8 @@ Template.writing.players = function () {
 	return players;
 }
 
-Template.writing_name.display_name = function() {
+Template.writing_player.display_name = function() {
 	var player = get_player(this._id);
-	console.log(player);
 	return displayName(player);
 }
 
