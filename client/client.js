@@ -270,23 +270,33 @@ Template.writing.players = function () {
 	return players;
 }
 
+Template.writing.btn_primary_or_success = function () {
+	var me = player();
+	return (me && me.status === 'waiting') ? 'btn-success' : 'btn-primary';
+}
+
 Template.writing.events({
 	'click .mark-correct': function (event, template) {
 		$('.mark-correct').removeClass('on').addClass('off');
 		$(event.srcElement).addClass('on');
 	},
 	'click .ready-question': function (event, template) {
-		$(event.srcElement).toggleClass('btn-success').toggleClass('btn-primary');
-console.log('.avatar.player-' + Meteor.userId());
-		if ( $(event.srcElement).hasClass('btn-success') ) {
-			$('.avatar.player-' + Meteor.userId()).addClass('eva-done').removeClass('eva');
-		} else {
-			$('.avatar.player-' + Meteor.userId()).addClass('eva').removeClass('eva-done');
-		}
+		Meteor.call('get_my_status', function (error, result) {
+			if (result === 'waiting')	{
+				Meteor.call('set_my_status', 'done');
+			} else {
+				Meteor.call('set_my_status', 'waiting');
+			}
+		});
 	}
 });
 
-Template.writing_player.display_name = function() {
+Template.writing_player.eva_status = function () {
+	var player = get_player(this._id);
+	return (player && player.status === 'waiting') ? 'eva-done' : 'eva-waiting';
+}
+
+Template.writing_player.display_name = function () {
 	var player = get_player(this._id);
 	return displayName(player);
 }

@@ -50,8 +50,8 @@
 			{{/each }}
 		</ul>
 
-		<div id="floater-one" class="avatar commander eva rotate-right"></div>
-		<div id="floater-two" class="avatar commander eva drift-left"></div>
+		<div id="floater-one" class="avatar commander eva-waiting rotate-right"></div>
+		<div id="floater-two" class="avatar commander eva-waiting drift-left"></div>
 	</div>
 	{{/if}}
 </template>
@@ -162,7 +162,7 @@
 	<div id="captions">
 	</div>
 	<div id="inputs">
-		<input type="button" class="btn btn-primary btn-large ready-question" value="Ready Up!" />
+		<input type="button" class="btn {{btn_primary_or_success}} btn-large ready-question" value="Ready Up!" />
 
 		<div class="question">
 			<textarea id="question" placeholder="Write your question here"></textarea>
@@ -190,7 +190,7 @@
 	<div class="pdv flipped"></div>
 </template>
 <template name="writing_player">
-	<div class="avatar commander eva space-hover player-{{user_id}}">
+	<div class="avatar commander {{eva_status}} space-hover player-{{user_id}}">
 		{{display_name}}
 	</div>
 </template>
@@ -198,7 +198,7 @@
 <template name="answering">
 	answering.
 	<div id="animations">
-			<div class="avatar commander eva space-hover"></div>
+			<div class="avatar commander eva-waiting space-hover"></div>
 	</div>
 	<div id="captions">
 	</div>
@@ -210,7 +210,7 @@
 <template name="results">
 	results.
 	<div id="animations">
-			<div class="avatar commander eva space-hover"></div>
+			<div class="avatar commander eva-waiting space-hover"></div>
 	</div>
 	<div id="captions">
 	</div>

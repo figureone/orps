@@ -2,7 +2,7 @@ Games = new Meteor.Collection('games');
 // {name: 'ART 175', description: 'Study Room for ART 175'}
 
 Players = new Meteor.Collection('players');
-// {name: 'Bob Dole', user_id: Asdf123, game_id: Asdf123, round_id: Asdf123}
+// {name: 'Bob Dole', user_id: Asdf123, game_id: Asdf123, round_id: Asdf123, status: [waiting|done]}
 
 Chats = new Meteor.Collection('chats');
 // {name: 'Bob Dole', game_id: Asdf123, message: 'hi', timestamp: 123456}
