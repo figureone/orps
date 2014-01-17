@@ -353,10 +353,16 @@ Template.answering.events({
 			// Hide "wrong answer" red x (only show when grading my question)
 			$('.mark-wrong').hide(250);
 
+			// Rename submit button
+			$('.ready-question').val('Submit Answer!')
+
 			// if this is my question, show other's responses and grading buttons
 			if (writer_user_id == Meteor.userId()) {
 				// Show "wrong answer" red x (only show when grading my question)
 				$('.mark-wrong').show(250);
+
+				// Rename submit button
+				$('.ready-question').val('Grade Teammates!')
 
 				Meteor.call('get_answers', result.player_id, result._id, function (error, result) {
 					if (result && result[0]) {
@@ -365,7 +371,10 @@ Template.answering.events({
 						} else {
 							$('#answer_a_correct').removeClass('on').addClass('off');
 						}
-						$('#answer_a').val(result[0].answer + ': ' + result[0].answer_text).attr('readonly', true);
+						$('#answer_a').val(
+							displayName(get_player(result[0].player_id)) + ' answered ' +
+							result[0].answer + ': ' + result[0].answer_text
+						).attr('readonly', true);
 					}
 					if (result && result[1]) {
 						result[1].answer;
@@ -374,7 +383,10 @@ Template.answering.events({
 						} else {
 							$('#answer_b_correct').removeClass('on').addClass('off');
 						}
-						$('#answer_b').val(result[1].answer + ': ' + result[1].answer_text).attr('readonly', true);
+						$('#answer_b').val(
+							displayName(get_player(result[1].player_id)) + ' answered ' +
+							result[1].answer + ': ' + result[1].answer_text
+						).attr('readonly', true);
 					}
 					if (result && result[2]) {
 						result[2].answer;
@@ -383,7 +395,10 @@ Template.answering.events({
 						} else {
 							$('#answer_c_correct').removeClass('on').addClass('off');
 						}
-						$('#answer_c').val(result[2].answer + ': ' + result[2].answer_text).attr('readonly', true);
+						$('#answer_c').val(
+							displayName(get_player(result[2].player_id)) + ' answered ' +
+							result[2].answer + ': ' + result[2].answer_text
+						).attr('readonly', true);
 					}
 				});
 			} else { // not my question, so show answers and let me pick correct one
