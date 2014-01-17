@@ -206,6 +206,15 @@ Template.orps.show = function () {
 	return in_round();
 }
 
+Template.orps.clock = function () {
+	var round = current_round();
+	if ( ! round.clock)
+		round.clock = 0;
+	var seconds = round.clock % 60;
+	var minutes = parseInt(round.clock / 60);
+	return minutes + ':' + ('0' + seconds).slice(-2);
+}
+
 Template.orps.title = function () {
 	var title = '';
 	var round = current_round();
