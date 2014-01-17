@@ -63,13 +63,13 @@ Meteor.methods({
 			var clock = 20;
 			Rounds.update( round._id, { $set: { status: 'loading', clock: clock } } );
 			var interval = Meteor.setInterval(function () {
-				clock -= 1;
+				clock -= 5;
 				Rounds.update( round._id, { $set: { clock: clock } } );
 				if (clock < 1) {
 					Meteor.clearInterval(interval);
 					Rounds.update( round._id, { $set: { status: 'writing' } } );
 				}
-			}, 1000);
+			}, 5000);
 		}
 	},
 	not_ready: function () {
