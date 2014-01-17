@@ -156,7 +156,9 @@
 <template name="writing">
 	writing.
 	<div id="animations">
-		<div class="avatar commander eva space-hover"></div>
+		{{#each players }}
+			<div class="avatar commander eva space-hover" style="float:left;margin-left:50px">{{> writing_name }}</div>
+		{{/each}}
 	</div>
 	<div id="captions">
 	</div>
@@ -184,6 +186,9 @@
 
 	</div>
 	<div class="pdv flipped"></div>
+</template>
+<template name="writing_name">
+	{{display_name}}
 </template>
 
 <template name="answering">

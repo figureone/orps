@@ -6,6 +6,10 @@ var player = function () {
 	return Players.findOne({ user_id: Meteor.userId() });
 }
 
+var get_player = function (id) {
+	return Players.findOne({ _id: id } );
+}
+
 var game = function () {
 	var me = player();
 	return me && me.game_id && Games.findOne(me.game_id);
@@ -38,7 +42,14 @@ var displayName = function (user) {
 		return user.google.name;
 	}
 	if (user.emails && user.emails.length > 0 && user.emails[0].address) {
-		return user.emails[0].address;
+		var email = user.emails[0].address;
+		var emailName = email.match(/^([^@]*)@/);
+		return emailName ? emailName[1] : email;
+	}
+	if (user.name) {
+		var shortName = user.name.match(/^([^@ ]*)[@ ]/);
+console.log(shortName);
+		return shortName ? shortName[1] : user.name;
 	}
 	return 'Default User';
 };
@@ -250,6 +261,21 @@ Template.loading.random_planet_name = function () {
 	return prefixes[Math.floor(Math.random()*prefixes.length)] + suffixes[Math.floor(Math.random()*suffixes.length)];
 }
 
+//
+// Writing template
+//
+
+Template.writing.players = function () {
+	var round = current_round();
+	var players = Players.find( { _id: { $in: round.round_players } } );
+	return players;
+}
+
+Template.writing_name.display_name = function() {
+	var player = get_player(this._id);
+	console.log(player);
+	return displayName(player);
+}
 
 ////////////////////////////////
 ////////////////////////////////
