@@ -203,7 +203,14 @@
 		<p>Active rounds:</p>
 		<ul>
 			{{#each rounds }}
-				<li><a class="close debug-round-delete" href="#">&times;</a> {{_id}}, Status: {{status}}. Users: {{#each round_players}} {{.}}, {{/each}}</li>
+				<li>{{_id}}, Status: {{status}}. Users: {{#each round_players}} {{.}}, {{/each}}<br />
+					<a class="close debug-round-delete" href="#">delete round</a><br />
+					jump to: 
+					<a href="#" class="debug-status-loading">loading</a> 
+					<a href="#" class="debug-status-writing">writing</a> 
+					<a href="#" class="debug-status-answering">answering</a> 
+					<a href="#" class="debug-status-results">results</a> 
+				</li>
 			{{/each}}
 		</ul>
 	</div>

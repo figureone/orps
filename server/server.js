@@ -82,6 +82,9 @@ Meteor.methods({
 	debug_delete_round: function (round_id) {
 		Rounds.remove({_id: round_id});
 	},
+	debug_jump_to_state: function (state, round_id) {
+		Rounds.update( round_id, { $set: { status: state } } );
+	}
 });
 
 //
