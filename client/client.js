@@ -8,7 +8,19 @@ var player = function () {
 
 var game = function () {
 	var me = player();
-	return me && me.game_id;// && Games.findOne(me.game_id);
+	return me && me.game_id && Games.findOne(me.game_id);
+}
+
+var current_round = function () {
+	var me = player();
+	return me && me.round_id && Rounds.findOne(me.round_id);
+}
+
+// true if the current user is playing (false if waiting and ready to start a round, or in lobby or not logged in)
+var in_round = function () {
+	var me = player();
+	var round = me && me.round_id && Rounds.findOne(me.round_id);
+	return round && round.status !== 'waiting';
 }
 
 var displayName = function (user) {
@@ -70,12 +82,12 @@ Template.game.player_count = function () {
 //
 
 Template.staging.show = function () {
-	// Only show if user is logged in
-	return Meteor.userId() && game();
+	// Only show if user is logged in, in a game room, but not playing in a round
+	return Meteor.userId() && game() && !in_round();
 }
 
 Template.staging.chats = function () {
-	var chats = Chats.find({ game_id: game() }, { sort: { 'timestamp': -1 }, limit: 5 });
+	var chats = Chats.find({ game_id: game()._id }, { sort: { 'timestamp': -1 }, limit: 5 });
 	// we need to use reverse ordering to grab just the last few chats, but then we need to reverse the order again so the chats display oldest to newest. hence the mess below.
 	var reverse_chats = new Array();
 	chats.forEach( function (data) {
@@ -97,9 +109,23 @@ Template.staging.game_description = function () {
 	return game.description;
 }
 
+Template.staging.btn_primary_or_success = function () {
+	var round = current_round();
+	return (round && round.status === 'waiting') ? 'btn-success' : 'btn-primary';
+}
+
 Template.staging.events({
 	'click .game-leave': function (event, template) {
-		Meteor.call('leave', game());
+		Meteor.call('leave', game()._id);
+	},
+	'click .game-start': function (event, template) {
+		$('.game-start').toggleClass('btn-primary').toggleClass('btn-success');
+
+		if ($('.game-start').hasClass('btn-success') ) { // entered ready up state
+			Meteor.call('ready', game()._id);
+		} else { // we've canceled our "ready up" state
+			Meteor.call('not_ready');
+		}
 	},
 	'keyup .staging-chat-input': function (event, template) {
 		if ( event.which == 13) { // eventnter key
@@ -107,7 +133,7 @@ Template.staging.events({
 			var message = $('input.staging-chat-input').val().trim();
 			Chats.insert({
 				name: displayName(Meteor.user()),
-				game_id: game(),
+				game_id: game()._id,
 				message: message,
 				timestamp: new Date().getTime(),
 			});
@@ -123,11 +149,61 @@ Template.staging.events({
 Template.chat.timestamp_formatted = function () {
 	var time = new Date(this.timestamp);
 	if (time.getHours() > 12) {
-		return time.getHours() - 12 + ':' + time.getMinutes() + 'pm';
+		return time.getHours() - 12 + ':' + ('0' + time.getMinutes()).slice(-2) + 'pm';
 	} else {
-		return time.getHours() + ':' + time.getMinutes() + 'am';
+		return time.getHours() + ':' + ('0' + time.getMinutes()).slice(-2) + 'am';
 	}
 }
+
+//
+// ORPS template (in-game template)
+//
+
+Template.orps.show = function () {
+	// Only show if user is playing in a round
+	return in_round();
+}
+
+Template.orps.status_loading = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'loading';
+}
+Template.orps.status_writing = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'writing';
+}
+Template.orps.status_answering = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'answering';
+}
+Template.orps.status_results = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'results';
+}
+
+//
+// Loading template
+//
+
+Template.loading.random_planet_name = function () {
+	prefixes = [
+		'Flur',
+		'Opnon',
+		'Shontoo',
+		'Vardon',
+		'Relko'
+	];
+	suffixes = [
+		'bord',
+		'dle',
+		'blick',
+		'pantard',
+		'vry'
+	];
+
+	return prefixes[Math.floor(Math.random()*prefixes.length)] + suffixes[Math.floor(Math.random()*suffixes.length)];
+}
+
 
 ////////////////////////////////
 ////////////////////////////////
@@ -140,6 +216,15 @@ Template.debug.players = function () {
 	var players = Players.find();
 	return players;
 }
+Template.debug.rounds = function () {
+	var rounds = Rounds.find();
+	return rounds;
+}
+Template.debug.events({
+	'click .debug-round-delete': function (event, template) {
+		Meteor.call('debug_delete_round', this._id);
+	},
+});
 // END DEBUG REMOVE /////////////
 ////////////////////////////////
 ////////////////////////////////
