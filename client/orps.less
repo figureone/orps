@@ -325,9 +325,12 @@ input, textarea {
 .answer { position: relative; }
 .answer input, .question textarea {
 	box-sizing: border-box;
-  width: 100%;
+	width: 100%;
 	padding: 10px;
 	margin-bottom: 15px;
+}
+.answer input[type="text"] {
+	padding-left: 45px;
 }
 
 // Green and red checks
@@ -338,6 +341,20 @@ input, textarea {
 	position: absolute;
 	margin: -53px 0;
 	right: 0;
+	&.on {
+		background-color: @screenBlue;
+	}
+}
+
+// Answer letter labels
+.answer span {
+	width: 21px;
+	height: 28px;
+	background-color: @glassGreen;
+	position: absolute;
+	margin: 0;
+	padding: 10px 0 0 14px;
+	left: 0;
 }
 
 
