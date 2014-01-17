@@ -345,7 +345,6 @@ Template.answering.events({
 			$('#answer_a').val(result.answer_a);
 			$('#answer_b').val(result.answer_b);
 			$('#answer_c').val(result.answer_c);
-			console.log(result);
 		});
 	},
 });
