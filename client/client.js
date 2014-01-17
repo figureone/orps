@@ -382,7 +382,7 @@ Template.answering_player.is_writer = function () {
 ////////////////////////////////
 Template.debug.show = function () {
 	var me = Meteor.user();
-	if (me && me.services && me.services.google && me.services.google.email && ( me.services.google.email === 'prar@hawaii.edu' || me.services.google.email === 'jkhedani@hawaii.edu' ) ) {
+	if (me && me.services && me.services.google && me.services.google.email && ( me.services.google.email === 'prar@hawaii.edu' || me.services.google.email === 'jkhedani@gmail.com' ) ) {
 		return true;
 	}
 	return false;
