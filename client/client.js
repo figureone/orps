@@ -149,9 +149,9 @@ Template.staging.events({
 Template.chat.timestamp_formatted = function () {
 	var time = new Date(this.timestamp);
 	if (time.getHours() > 12) {
-		return time.getHours() - 12 + ':' + time.getMinutes() + 'pm';
+		return time.getHours() - 12 + ':' + ('0' + time.getMinutes()).slice(-2) + 'pm';
 	} else {
-		return time.getHours() + ':' + time.getMinutes() + 'am';
+		return time.getHours() + ':' + ('0' + time.getMinutes()).slice(-2) + 'am';
 	}
 }
 
