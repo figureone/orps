@@ -250,10 +250,10 @@ Template.loading.random_planet_name = function () {
 		'Relko'
 	];
 	suffixes = [
-		'bord',
+		'bogglid',
 		'dle',
-		'blick',
-		'pantard',
+		'blork',
+		'panard',
 		'vry'
 	];
 
