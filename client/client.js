@@ -409,6 +409,10 @@ Template.answering.events({
 
 		});
 	},
+	'click .ready-question': function (event, template) {
+		// var me = player();
+		// var correct_answer_id = $('.answer input.on').attr('id');
+	},
 });
 
 Template.answering_player.eva_status = function () {
