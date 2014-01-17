@@ -256,6 +256,18 @@ Template.debug.events({
 	'click .debug-round-delete': function (event, template) {
 		Meteor.call('debug_delete_round', this._id);
 	},
+	'click .debug-status-loading': function (event, template) {
+		Meteor.call('debug_jump_to_state', 'loading', this._id);
+	},
+	'click .debug-status-writing': function (event, template) {
+		Meteor.call('debug_jump_to_state', 'writing', this._id);
+	},
+	'click .debug-status-answering': function (event, template) {
+		Meteor.call('debug_jump_to_state', 'answering', this._id);
+	},
+	'click .debug-status-results': function (event, template) {
+		Meteor.call('debug_jump_to_state', 'results', this._id);
+	},
 });
 // END DEBUG REMOVE /////////////
 ////////////////////////////////
