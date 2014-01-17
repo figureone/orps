@@ -448,8 +448,14 @@ input, textarea {
 			float: left;
 			margin-left: 2%;
 			text-align: center;
-			&:first-child { margin: 0; }
+			margin-bottom: 10px;
+			&:nth-child(odd) { margin: 0; }
 			.btn-primary { width: 100%; }
+			.caption {
+				p {
+					margin: 0 5px;
+				}
+			}
 		}
 	}
 	#floater-one {
