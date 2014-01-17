@@ -138,7 +138,7 @@ Meteor.methods({
 			});
 		}
 	},
-	show_question: function (user_id, round_id) {
+	get_question: function (user_id, round_id) {
 		var player = Players.findOne( { user_id: user_id } );
 		var question = Questions.findOne( { player_id: player._id, round_id: round_id } );
 		return question;

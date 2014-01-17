@@ -340,11 +340,20 @@ Template.answering.events({
 		var writer_user_id = $(event.srcElement).attr('id');
 		var round = current_round();
 		Session.set("writer", writer_user_id);
-		Meteor.call('show_question', writer_user_id, round._id, function (error, result) {
+		Meteor.call('get_question', writer_user_id, round._id, function (error, result) {
 			$('#question').html(result.question);
-			$('#answer_a').val(result.answer_a);
-			$('#answer_b').val(result.answer_b);
-			$('#answer_c').val(result.answer_c);
+
+			// if this is my question, show other's responses and grading buttons
+			if (writer_user_id == Meteor.userId()) {
+				Meteor.call('get_answers', result.player_id, result._id, function (error, result) {
+					console.log(result);
+				});
+			} else {
+				$('#answer_a').val(result.answer_a);
+				$('#answer_b').val(result.answer_b);
+				$('#answer_c').val(result.answer_c);
+			}
+
 		});
 	},
 });
@@ -373,7 +382,7 @@ Template.answering_player.is_writer = function () {
 ////////////////////////////////
 Template.debug.show = function () {
 	var me = Meteor.user();
-	if (me.services && me.services.google && me.services.google.email && ( me.services.google.email === 'prar@hawaii.edu' || me.services.google.email === 'jkhedani@hawaii.edu' ) ) {
+	if (me && me.services && me.services.google && me.services.google.email && ( me.services.google.email === 'prar@hawaii.edu' || me.services.google.email === 'jkhedani@hawaii.edu' ) ) {
 		return true;
 	}
 	return false;
