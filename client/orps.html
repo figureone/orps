@@ -104,30 +104,46 @@
 <template name="orps">
 	{{#if show }}
 		{{#if status_loading }}
-			loading.
-			{{> animations }}
-			{{> captions }}
-			{{> inputs }}
+			{{> loading }}
 		{{/if}}
 		{{#if status_writing }}
-			writing.
-			{{> animations }}
-			{{> captions }}
-			{{> inputs }}
+			{{> writing }}
 		{{/if}}
 		{{#if status_answering }}
-			answering.
-			{{> animations }}
-			{{> captions }}
-			{{> inputs }}
+			{{> answering }}
 		{{/if}}
 		{{#if status_results }}
-			results.
-			{{> animations }}
-			{{> captions }}
-			{{> inputs }}
+			{{> results }}
 		{{/if}}
 	{{/if}}
+</template>
+
+<template name="loading">
+	loading.
+	{{> animations }}
+	{{> captions }}
+	{{> inputs }}
+</template>
+
+<template name="writing">
+	writing.
+	{{> animations }}
+	{{> captions }}
+	{{> inputs }}
+</template>
+
+<template name="answering">
+	answering.
+	{{> animations }}
+	{{> captions }}
+	{{> inputs }}
+</template>
+
+<template name="results">
+	results.
+	{{> animations }}
+	{{> captions }}
+	{{> inputs }}
 </template>
 
 
