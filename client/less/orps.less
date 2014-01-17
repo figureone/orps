@@ -34,6 +34,7 @@
  */
 @glassGreen: rgb( 113, 219, 187 );
 @alertRed: rgb( 214, 69, 86 );
+@screenBlue: rgb( 70, 201, 211 );
 
 @grayDark: rgb( 40, 40, 40 );
 
@@ -171,6 +172,31 @@
 
 
 
+/**
+ *	Avatars
+ */
+.avatar {
+	width: 108px;
+	height: 210px;
+	background: url('/avatar-commander.png') no-repeat;
+	&.small { width: 54px; height: 105px; -webkit-background-size: auto 100% !important; }
+	&.commander {
+		background: url('/avatar-commander.png') no-repeat;
+		&.eva { background-position: -159px 0; }
+	}
+}
+.pdv {
+	&.small {
+		width: 351px;
+		height: 157px;
+		background: url('/pdv-mk1.png') no-repeat;
+	}
+}
+.asteroid {
+	width: 96px;
+	height: 84px;
+	background: url('/asteroid.png') no-repeat;
+}
 
 /**
  *	General Styles
@@ -201,33 +227,6 @@ body {
 		}
 	}
 }
-
-/**
- *	Avatars
- */
-.avatar {
-	width: 108px;
-	height: 210px;
-	background: url('/avatar-commander.png') no-repeat;
-	&.small { width: 54px; height: 105px; -webkit-background-size: auto 100% !important; }
-	&.commander {
-		background: url('/avatar-commander.png') no-repeat;
-		&.eva { background-position: -159px 0; }
-	}
-}
-.pdv {
-	&.small {
-		width: 351px;
-		height: 157px;
-		background: url('/pdv-mk1.png') no-repeat;
-	}
-}
-.asteroid {
-	width: 96px;
-	height: 84px;
-	background: url('/asteroid.png') no-repeat;
-}
-
 // Logo
 .logo {
 	width: 102px;
@@ -257,6 +256,21 @@ body {
 	}
 	&.btn-success {
 		background: blue;
+	}
+}
+.game-HUD {
+	width: 710px;
+	height: 97px;
+	margin: -55px 0 0 -35px;
+	position: relative;
+	background: url('/game-HUD.png') no-repeat;
+	.game-HUD-comm {
+		position: absolute;
+		top: 97px;
+		left: 36px;
+		padding: 20px;
+		color: #FFF;
+		background-color: fadeout(@screenBlue, 20%);
 	}
 }
 

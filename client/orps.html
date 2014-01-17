@@ -9,7 +9,6 @@
 
 <template name="wrapper">
 	<div id="main" class="container {{class_game_state}}">
-		{{> header }}
 
 		{{> lobby }}
 
@@ -73,6 +72,8 @@
 <template name="staging">
 	{{#if show }}
 
+	{{> header }}
+
 	<!-- Job Cube & Contents -->
 	<div class="job-cube"></div>
 	<div class="job-cube-contents">
@@ -121,6 +122,10 @@
 
 
 <template name="orps">
+	<div class="game-HUD">
+		<div class="game-HUD-comm">asdfasdfasdf</div>
+		<div class="game-HUD-timer"></div>
+	</div>
 	{{#if show }}
 		{{#if status_loading }}
 			{{> loading }}

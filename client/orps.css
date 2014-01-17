@@ -159,6 +159,35 @@
   -webkit-animation: walkshortleft 5s infinite linear;
 }
 /**
+ *	Avatars
+ */
+.avatar {
+  width: 108px;
+  height: 210px;
+  background: url('/avatar-commander.png') no-repeat;
+}
+.avatar.small {
+  width: 54px;
+  height: 105px;
+  -webkit-background-size: auto 100% !important;
+}
+.avatar.commander {
+  background: url('/avatar-commander.png') no-repeat;
+}
+.avatar.commander.eva {
+  background-position: -159px 0;
+}
+.pdv.small {
+  width: 351px;
+  height: 157px;
+  background: url('/pdv-mk1.png') no-repeat;
+}
+.asteroid {
+  width: 96px;
+  height: 84px;
+  background: url('/asteroid.png') no-repeat;
+}
+/**
  *	General Styles
  */
 body {
@@ -196,35 +225,6 @@ body {
   padding: 10px;
   background: url('/options-gear.png') top right no-repeat;
 }
-/**
- *	Avatars
- */
-.avatar {
-  width: 108px;
-  height: 210px;
-  background: url('/avatar-commander.png') no-repeat;
-}
-.avatar.small {
-  width: 54px;
-  height: 105px;
-  -webkit-background-size: auto 100% !important;
-}
-.avatar.commander {
-  background: url('/avatar-commander.png') no-repeat;
-}
-.avatar.commander.eva {
-  background-position: -159px 0;
-}
-.pdv.small {
-  width: 351px;
-  height: 157px;
-  background: url('/pdv-mk1.png') no-repeat;
-}
-.asteroid {
-  width: 96px;
-  height: 84px;
-  background: url('/asteroid.png') no-repeat;
-}
 .logo {
   width: 102px;
   height: 44px;
@@ -255,6 +255,21 @@ body {
 }
 .btn.btn-success {
   background: blue;
+}
+.game-HUD {
+  width: 710px;
+  height: 97px;
+  margin: -55px 0 0 -35px;
+  position: relative;
+  background: url('/game-HUD.png') no-repeat;
+}
+.game-HUD .game-HUD-comm {
+  position: absolute;
+  top: 97px;
+  left: 36px;
+  padding: 20px;
+  color: #FFF;
+  background-color: rgba(70, 201, 211, 0.8);
 }
 /**
  *	Typography
