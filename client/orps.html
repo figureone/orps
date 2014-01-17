@@ -35,6 +35,9 @@
 
 <template name="lobby">
 	{{#if show }}
+	<div class="user-options-container">
+		{{loginButtons}}
+	</div>
 	<div class="lobby">
 		<div class="title-box">
 			<div class="logo large"></div>
@@ -159,24 +162,28 @@
 	</div>
 	<div id="inputs">
 		<input type="button" class="btn {{btn_primary_or_success}} btn-large ready-question" value="Ready Up!" />
-		<br />
 
-		<textarea id="question" placeholder="Write your question here"></textarea>
-		<br />
+		<div class="question">
+			<textarea id="question" placeholder="Write your question here"></textarea>
+		</div>
+
+		<div class="answer">
+			<input type="text" id="answer_a" value="" placeholder="Write an answer here." />
+			<input type="button" id="answer_a_correct" class="off" value="*" />
+		</div>
+
+		<div class="answer">
+			<input type="text" id="answer_b" value="" placeholder="Don't forget to mark which one is correct!" />
+			<input type="button" id="answer_a_correct" class="off" value="*" />
+		</div>
 		
-		<input type="text" id="answer_a" value="" placeholder="Write an answer here." />
-		<input type="button" id="answer_a_correct" class="off" value="*" />
-		<br />
-		
-		<input type="text" id="answer_b" value="" placeholder="Don't forget to mark which one is correct!" />
-		<input type="button" id="answer_a_correct" class="off" value="*" />
-		<br />
-		
-		<input type="text" id="answer_c" value="" placeholder="Hit the Ready Up button when you're done!" />
-		<input type="button" id="answer_a_correct" class="off" value="*" />
-		<br />
+		<div class="answer">
+			<input type="text" id="answer_c" value="" placeholder="Hit the Ready Up button when you're done!" />
+			<input type="button" id="answer_a_correct" class="off" value="*" />
+		</div>
+
 	</div>
-	<div class="pdv large"></div>
+	<div class="pdv flipped"></div>
 </template>
 
 <template name="answering">
@@ -188,7 +195,7 @@
 	</div>
 	<div id="inputs">
 	</div>
-	<div class="pdv large"></div>
+	<div class="pdv flipped"></div>
 </template>
 
 <template name="results">
@@ -200,7 +207,7 @@
 	</div>
 	<div id="inputs">
 	</div>
-	<div class="pdv large"></div>
+	<div class="pdv flipped"></div>
 </template>
 
 
