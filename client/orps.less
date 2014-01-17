@@ -191,12 +191,16 @@
  */
 .avatar {
 	width: 108px;
-	height: 210px;
+	height: 228px; // was 210px...added 18px for room for name.
+	text-align: center;
 	background: url('/avatar-commander.png') no-repeat;
+	float: left;
+	margin-left: 50px;
 	&.small { width: 54px; height: 105px; -webkit-background-size: auto 100% !important; }
 	&.commander {
 		background: url('/avatar-commander.png') no-repeat;
-		&.eva { background-position: -159px 0; }
+		&.eva { background-position: -159px 18px; }
+		&.eva-done { background-position: -320px 18px; }
 	}
 }
 .pdv {
