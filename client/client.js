@@ -153,7 +153,7 @@ Template.staging.game_description = function () {
 
 Template.staging.btn_primary_or_success = function () {
 	var round = current_round();
-	return (round && round.status === 'waiting') ? 'btn-success' : 'btn-primary';
+	return (round && round.status === 'done') ? 'btn-success' : 'btn-primary';
 }
 
 Template.staging.events({
@@ -272,7 +272,7 @@ Template.writing.players = function () {
 
 Template.writing.btn_primary_or_success = function () {
 	var me = player();
-	return (me && me.status === 'waiting') ? 'btn-success' : 'btn-primary';
+	return (me && me.status === 'done') ? 'btn-success' : 'btn-primary';
 }
 
 Template.writing.events({
@@ -293,7 +293,7 @@ Template.writing.events({
 
 Template.writing_player.eva_status = function () {
 	var player = get_player(this._id);
-	return (player && player.status === 'waiting') ? 'eva-done' : 'eva-waiting';
+	return (player && player.status === 'done') ? 'eva-done' : 'eva-waiting';
 }
 
 Template.writing_player.display_name = function () {

@@ -80,6 +80,24 @@ Meteor.methods({
 	set_my_status: function (status) {
 		var player = Players.findOne({user_id: Meteor.userId()});
 		Players.update( player._id, { $set: { status: status } } );
+
+		// If all players are ready, move on
+		var proceed = true;
+		var round = Rounds.findOne( { _id: player.round_id } );
+console.log(round);
+		round.round_players.forEach( function (data) {
+			var round_player = Players.findOne( { _id: data } );
+console.log(round_player);
+			if ( ! ( round_player && round_player.status === 'done') ) {
+console.log('no proceed');
+				proceed = false;
+			}
+		});
+console.log(proceed);
+		if (proceed) {
+			Rounds.update( round._id, { $set: { status: 'answering' } } );
+		}
+
 	},
 	get_my_status: function () {
 		var player = Players.findOne({user_id: Meteor.userId()});
