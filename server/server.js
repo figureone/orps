@@ -143,6 +143,10 @@ Meteor.methods({
 		var question = Questions.findOne( { player_id: player._id, round_id: round_id } );
 		return question;
 	},
+	get_answers: function (player_id, question_id) {
+		var answers = Answers.find( { player_id: player_id, question_id: question_id } );
+		return answers.fetch();
+	},
 
 	////////////////////////////
 	// DEBUG CODE

@@ -14,4 +14,4 @@ Questions = new Meteor.Collection('questions');
 // {player_id: Asdf123, round_id: Asdf123, question: 'What is X?', answer_a: 'A', answer_b: 'B', answer_c: 'C', answer_correct: '[a|b|c]'}
 
 Answers = new Meteor.Collection('answers');
-// {player_id: Asdf123, question_id: Asdf123, answer: '[a|b|c]', is_correct: [true|false] }
+// {player_id: Asdf123, question_id: Asdf123, answer: '[a|b|c]', answer_text: 'my answer', is_correct: [true|false] }

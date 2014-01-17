@@ -351,11 +351,37 @@ Template.answering.events({
 			if (writer_user_id == Meteor.userId()) {
 				Meteor.call('get_answers', result.player_id, result._id, function (error, result) {
 					console.log(result);
+					if (result && result[0]) {
+						if (result[0].is_correct) {
+							$('#answer_a_correct').removeClass('off').addClass('on');
+						} else {
+							$('#answer_a_correct').removeClass('on').addClass('off');
+						}
+						$('#answer_a').val(result[0].answer + ': ' + result[0].answer_text).attr('readonly', true);
+					}
+					if (result && result[1]) {
+						result[1].answer;
+						if (result[1].is_correct) {
+							$('#answer_b_correct').removeClass('off').addClass('on');
+						} else {
+							$('#answer_b_correct').removeClass('on').addClass('off');
+						}
+						$('#answer_b').val(result[1].answer + ': ' + result[1].answer_text).attr('readonly', true);
+					}
+					if (result && result[2]) {
+						result[2].answer;
+						if (result[2].is_correct) {
+							$('#answer_c_correct').removeClass('off').addClass('on');
+						} else {
+							$('#answer_c_correct').removeClass('on').addClass('off');
+						}
+						$('#answer_c').val(result[2].answer + ': ' + result[2].answer_text).attr('readonly', true);
+					}
 				});
-			} else {
-				$('#answer_a').val(result.answer_a);
-				$('#answer_b').val(result.answer_b);
-				$('#answer_c').val(result.answer_c);
+			} else { // not my question, so show answers and let me pick correct one
+				$('#answer_a').val(result.answer_a).attr('readonly', false);
+				$('#answer_b').val(result.answer_b).attr('readonly', false);
+				$('#answer_c').val(result.answer_c).attr('readonly', false);
 			}
 
 		});
