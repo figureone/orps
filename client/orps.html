@@ -122,11 +122,11 @@
 
 
 <template name="orps">
-	<div class="game-HUD">
-		<div class="game-HUD-comm">{{title}}</div>
-		<div class="game-HUD-timer">0:00</div>
-	</div>
 	{{#if show }}
+		<div class="game-HUD">
+			<div class="game-HUD-comm">{{title}}</div>
+			<div class="game-HUD-timer">0:00</div>
+		</div>
 		{{#if status_loading }}
 			{{> loading }}
 		{{/if}}
