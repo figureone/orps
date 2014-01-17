@@ -210,14 +210,15 @@
 		background: url('/pdv-mk1.png') no-repeat;
 	}
 	&.flipped {
-		width: 921px;
+		width: 800px;
 		height: 536px;
 		background: url('/pdv-flipped.png') no-repeat;
-		position: fixed;
-		top: 490px;
-		left: -50%;
-		margin-left: 440px;
+		-webkit-background-size: 100% auto !important;
 		z-index: -9;
+		position: fixed;
+		top: 465px;
+		left: 50%;
+		margin-left: -400px;
 	}
 }
 .asteroid {
@@ -303,10 +304,11 @@ body {
 	background: url('/game-HUD.png') no-repeat;
 	.game-HUD-comm {
 		min-width: 470px;
+		max-width: 470px;
 		position: absolute;
 		top: 97px;
 		left: 36px;
-		padding: 25px 30px;
+		padding: 20px 30px;
 		color: #FFF;
 		font-size: 21px;
 		background-color: fadeout(@screenBlue, 40%);
@@ -319,7 +321,7 @@ body {
 		position: absolute;
 		top: 97px;
 		right: 35px;
-		padding: 30px;
+		padding: 37px 30px 36px;
 		color: #FFF;
 		font-size: 29px;
 		background-color: fadeout(@alertRed, 40%);
@@ -515,10 +517,10 @@ input, textarea {
 #main.game-state-answering,
 #main.game-state-results {
 	#animations {
-		min-height: 400px;
+		min-height: 455px;
 		margin-top: 175px;
 		.avatar {
-			margin-top: 100px;
+			margin-top: 20px;
 		}
 	}	
 }
