@@ -146,6 +146,31 @@
  */
 
 
+/**
+ *	Walking
+ */
+
+@-webkit-keyframes walkshortleft {
+	0% 	 { -webkit-transform: translate(0,0); }
+	25%  { -webkit-transform: translate(5px,0); }
+	50%  { -webkit-transform: translate(-20px,0); }
+	75%  { -webkit-transform: translate(10px,0); }
+	100% { -webkit-transform: translate(0,0);}
+}
+.walk-short-left {
+	-webkit-animation: walkshortleft 5s infinite linear;
+}
+// @-webkit-keyframes walkshortleft {
+// 	0% { -webkit-transform: translate(0,0); }
+// 	100% { -webkit-transform: translate(3000px,3000px);}
+// }
+// @-webkit-keyframes walkone {
+// 	0% { -webkit-transform: translate(0,0); }
+// 	100% { -webkit-transform: translate(3000px,3000px);}
+// }
+
+
+
 
 /**
  *	General Styles
@@ -184,6 +209,7 @@ body {
 	width: 108px;
 	height: 210px;
 	background: url('/avatar-commander.png') no-repeat;
+	&.small { width: 54px; height: 105px; -webkit-background-size: auto 100% !important; }
 	&.commander {
 		background: url('/avatar-commander.png') no-repeat;
 		&.eva { background-position: -159px 0; }
@@ -283,37 +309,47 @@ h2.title-bar {
 
 /**
  *	Staging Styles
+ *	Template #2
  */
-.job-cube {
-	width: 777px;
-	height: 675px;
-	position: absolute;
-	left: -68px;
-	top: 0;
-	z-index: -9;
-	background: url('/job-cube.png') no-repeat;
-}
-.job-cube-contents {
-	background: fadeout(@glassGreen, 40%);
-}
-.primary-interface {
-	background: lighten(@grayDark, 40%);
-	ul.tabs {
-		padding: 0;
-		.clearfix();
-		li {
-			background: lighten(@grayDark, 10%);
-			list-style: none;
-			width: 50%;
-			float: left;
-			text-align: center;
-			padding: 20px 0;
-			&.active { background: @grayDark; }
-			a {
-				color: #FFF;
+#main.game-state-staging {
+
+	.job-cube {
+		width: 777px;
+		height: 675px;
+		position: absolute;
+		left: -68px;
+		top: 0;
+		z-index: -9;
+		background: url('/job-cube.png') no-repeat;
+	}
+	.job-cube-contents {
+		background: fadeout(@glassGreen, 40%);
+	}
+	.primary-interface {
+		background: lighten(@grayDark, 40%);
+		ul.tabs {
+			padding: 0;
+			.clearfix();
+			li {
+				background: lighten(@grayDark, 10%);
+				list-style: none;
+				width: 50%;
+				float: left;
+				text-align: center;
+				padding: 20px 0;
+				&.active { background: @grayDark; }
+				a {
+					color: #FFF;
+				}
 			}
 		}
 	}
+
+	#animations {
+		.clearfix();
+		.avatar { float: left; }
+	}
+
 }
 
 /**

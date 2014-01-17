@@ -136,6 +136,29 @@
  *	Ship Crashing
  */
 /**
+ *	Walking
+ */
+@-webkit-keyframes walkshortleft {
+  0% {
+    -webkit-transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(5px, 0);
+  }
+  50% {
+    -webkit-transform: translate(-20px, 0);
+  }
+  75% {
+    -webkit-transform: translate(10px, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+.walk-short-left {
+  -webkit-animation: walkshortleft 5s infinite linear;
+}
+/**
  *	General Styles
  */
 body {
@@ -180,6 +203,11 @@ body {
   width: 108px;
   height: 210px;
   background: url('/avatar-commander.png') no-repeat;
+}
+.avatar.small {
+  width: 54px;
+  height: 105px;
+  -webkit-background-size: auto 100% !important;
 }
 .avatar.commander {
   background: url('/avatar-commander.png') no-repeat;
@@ -286,8 +314,9 @@ h2.title-bar {
 }
 /**
  *	Staging Styles
+ *	Template #2
  */
-.job-cube {
+#main.game-state-staging .job-cube {
   width: 777px;
   height: 675px;
   position: absolute;
@@ -296,24 +325,24 @@ h2.title-bar {
   z-index: -9;
   background: url('/job-cube.png') no-repeat;
 }
-.job-cube-contents {
+#main.game-state-staging .job-cube-contents {
   background: rgba(113, 219, 187, 0.6);
 }
-.primary-interface {
+#main.game-state-staging .primary-interface {
   background: #8e8e8e;
 }
-.primary-interface ul.tabs {
+#main.game-state-staging .primary-interface ul.tabs {
   padding: 0;
 }
-.primary-interface ul.tabs:before,
-.primary-interface ul.tabs:after {
+#main.game-state-staging .primary-interface ul.tabs:before,
+#main.game-state-staging .primary-interface ul.tabs:after {
   content: " ";
   display: table;
 }
-.primary-interface ul.tabs:after {
+#main.game-state-staging .primary-interface ul.tabs:after {
   clear: both;
 }
-.primary-interface ul.tabs li {
+#main.game-state-staging .primary-interface ul.tabs li {
   background: #424242;
   list-style: none;
   width: 50%;
@@ -321,11 +350,22 @@ h2.title-bar {
   text-align: center;
   padding: 20px 0;
 }
-.primary-interface ul.tabs li.active {
+#main.game-state-staging .primary-interface ul.tabs li.active {
   background: #282828;
 }
-.primary-interface ul.tabs li a {
+#main.game-state-staging .primary-interface ul.tabs li a {
   color: #FFF;
+}
+#main.game-state-staging #animations:before,
+#main.game-state-staging #animations:after {
+  content: " ";
+  display: table;
+}
+#main.game-state-staging #animations:after {
+  clear: both;
+}
+#main.game-state-staging #animations .avatar {
+  float: left;
 }
 /**
  *	Transition Styles
