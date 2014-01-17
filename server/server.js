@@ -16,6 +16,7 @@ Meteor.methods({
 			user_id: Meteor.userId(),
 			game_id: game_id,
 			round_id: '',
+			status: 'waiting',
 		});
 	},
 	leave: function (game_id) {
@@ -75,6 +76,14 @@ Meteor.methods({
 
 		// Remove all rounds that have no players (cleanup)
 		Rounds.remove({ round_players: { $size: 0 } } );
+	},
+	set_my_status: function (status) {
+		var player = Players.findOne({user_id: Meteor.userId()});
+		Players.update( player._id, { $set: { status: status } } );
+	},
+	get_my_status: function () {
+		var player = Players.findOne({user_id: Meteor.userId()});
+		return player.status;
 	},
 
 	////////////////////////////
