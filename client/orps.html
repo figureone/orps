@@ -86,11 +86,11 @@
 		<h2 class="game-name">{{game_name}} <small>{{game_description}}</small></h2>
 	
 		<div id="animations">
-			<div class="avatar commander standing small walk-short-left" style="left: 200px;"></div>
-			<div class="avatar commander standing small" style="left: 40px;"></div>
-			<div class="avatar commander standing small" style="left: 80px;"></div>
+			<div class="avatar commander standing small jump-a-lot" style="left: 200px;"></div>
+			<div class="avatar commander standing small jump-a-little" style="left: 40px;"></div>
+			<div class="avatar commander standing small jump-a-bit" style="left: 80px;"></div>
 		</div>
-	<div>
+	</div>
 
 	<!-- Tabs: Chat and completed games -->
 	<div class="primary-interface">
@@ -108,8 +108,16 @@
 				<input type="button" class="staging-chat-send btn btn-primary" value="Send" />
 			</div>
 		</div>
+
 		<!-- Completed Games -->
-		<div id="#completedGames" class="staging-completed-games"></div>
+		<div id="completedGames" class="staging-completed-games">
+			<div class="completed-game-package"><span>Question Set #1<small>Delivered 1.15.2014</small></span></div>
+			<div class="completed-game-package"><span>Question Set #2<small>Delivered 1.15.2014</small></div>
+			<div class="completed-game-package"><span>Question Set #3<small>Delivered 1.16.2014</small></div>
+			<div class="completed-game-package"><span>Question Set #4<small>Delivered 1.16.2014</small></div>
+			<div class="completed-game-package"><span>Question Set #5<small>Delivered 1.17.2014</small></div>
+			<div class="completed-game-package"><span>Question Set #6<small>Delivered 1.17.2014</small></div>
+		</div>
 	</div>
 
 	{{/if}}

@@ -180,14 +180,12 @@
 
 @-webkit-keyframes walkshortleft {
 	0% 	 { -webkit-transform: translate(0,0); }
-	25%  { -webkit-transform: translate(5px,0); }
-	50%  { -webkit-transform: translate(-20px,0); }
-	75%  { -webkit-transform: translate(10px,0); }
 	100% { -webkit-transform: translate(0,0);}
 }
-.jumping {
-	-webkit-animation: walkshortleft 5s infinite linear;
-}
+.jump-a-lot { -webkit-animation: walkshortleft 5s infinite linear; }
+.jump-a-little { -webkit-animation: walkshortleft 5s infinite linear; }
+.jump-a-bit { -webkit-animation: walkshortleft 5s infinite linear; }
+
 // @-webkit-keyframes walkshortleft {
 // 	0% { -webkit-transform: translate(0,0); }
 // 	100% { -webkit-transform: translate(3000px,3000px);}
@@ -280,6 +278,7 @@ body {
 #footer {
 	text-align: center;
 	padding: 0 80px;
+	margin-top: 15px;
 }
 // Logo
 .logo {
@@ -485,6 +484,7 @@ input, textarea {
 		}
 	}
 	.primary-interface {
+		.clearfix();
 		background: lighten(@grayDark, 40%);
 		ul.tabs {
 			margin: 0;
@@ -512,6 +512,26 @@ input, textarea {
 				.staging-chat-send { float: right; }
 			}
 		}
+		
+		#completedGames {
+			display: none;
+			padding: 20px;
+			.clearfix();
+			.completed-game-package {
+				width: 126px;
+				height: 78px;
+				float: left;
+				margin: 10px 0 50px 18px;
+				background: url('/completed-package.png') no-repeat;
+				span {
+					display: block;
+					margin-top: 82px;
+					text-align: center;
+					small { display: block; }
+				}
+			}
+		}
+
 	}
 
 	#animations {
