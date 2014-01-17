@@ -41,6 +41,12 @@ Meteor.methods({
 
 		// Add current player to (new) round
 		Rounds.update(round_id, {$addToSet: {round_players: player_id.toString() }});
+
+		// Move onto game if we have enough players
+		var round = Rounds.findOne({_id: round_id});
+		if (round && round.round_players.length > 1) {
+			Round.update(round_id, {status: 'loading'});
+		}
 	},
 	not_ready: function () {
 		var player_id = Meteor.userId();

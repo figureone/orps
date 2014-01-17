@@ -8,7 +8,24 @@ var player = function () {
 
 var game = function () {
 	var me = player();
-	return me && me.game_id;// && Games.findOne(me.game_id);
+	return me && me.game_id && Games.findOne(me.game_id);
+}
+
+var round = function () {
+	var me = player();
+	return me && me.round_id && Rounds.findOne(me.round_id);
+}
+
+// true if the current user is playing (false if waiting and ready to start a round, or in lobby or not logged in)
+var in_round = function () {
+	var me = player();
+	if (me && me.round_id) {
+		var round = Rounds.findOne(me.round_id);
+		if (round && round.state !== 'waiting') {
+			return true;
+		}
+	}
+	return false;
 }
 
 var displayName = function (user) {
@@ -70,8 +87,8 @@ Template.game.player_count = function () {
 //
 
 Template.staging.show = function () {
-	// Only show if user is logged in
-	return Meteor.userId() && game();
+	// Only show if user is logged in, in a game room, but not playing in a round
+	return Meteor.userId() && game() && !in_round();
 }
 
 Template.staging.chats = function () {
@@ -137,6 +154,16 @@ Template.chat.timestamp_formatted = function () {
 		return time.getHours() + ':' + time.getMinutes() + 'am';
 	}
 }
+
+//
+// ORPS template (in-game template)
+//
+
+Template.orps.show = function () {
+	// Only show if user is playing in a round
+	return in_round();
+}
+
 
 ////////////////////////////////
 ////////////////////////////////
