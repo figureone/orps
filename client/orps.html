@@ -89,7 +89,7 @@
 		</div>
 	</div>
 	<input type="button" class="btn btn-primary btn-large game-leave" value="Return to Lobby" />
-	<input type="button" class="btn btn-primary btn-large game-start" value="Ready Up!" />
+	<input type="button" class="btn {{btn_primary_or_success}} btn-large game-start" value="Ready Up!" />
 	{{/if}}
 </template>
 
@@ -102,10 +102,12 @@
 
 
 <template name="orps">
-	zing.
-	{{> animations }}
-	{{> captions }}
-	{{> inputs }}
+	{{#if show }}
+		zing.
+		{{> animations }}
+		{{> captions }}
+		{{> inputs }}
+	{{/if}}
 </template>
 
 

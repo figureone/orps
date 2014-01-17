@@ -15,50 +15,50 @@ Meteor.methods({
 			name: displayName(Meteor.user()),
 			user_id: Meteor.userId(),
 			game_id: game_id,
-			round_id: null,
+			round_id: '',
 		});
 	},
 	leave: function (game_id) {
 		Players.remove({ user_id: Meteor.userId() });
 	},
 	ready: function (game_id) {
-		var player_id = Meteor.userId();
+		var player = Players.findOne({user_id: Meteor.userId()});
 
 		// If there's already players waiting
-		var round_id = Rounds.findOne({status: 'waiting'});
+		var round = Rounds.findOne({status: 'waiting'});
 
 		// if there isn't a game in the waiting state, create a new one
-		if (!round_id) {
+		if (!round) {
 			round_id = Rounds.insert({
 				timestamp: new Date().getTime(),
 				status: 'waiting',
 				round_players: [],
 			});
+			var round = Rounds.findOne({_id: round_id});
 		}
 
 		// Update current player's status
-		Players.update(player_id, { round_id: round_id });
+		Players.update( player._id, { $set: { round_id: round._id } } );
 
 		// Add current player to (new) round
-		Rounds.update(round_id, {$addToSet: {round_players: player_id.toString() }});
+		Rounds.update( round._id, { $addToSet: { round_players: player._id } } );
 
 		// Move onto game if we have enough players
-		var round = Rounds.findOne({_id: round_id});
 		if (round && round.round_players.length > 1) {
-			Round.update(round_id, {status: 'loading'});
+			Rounds.update( round._id, { $set: { status: 'loading' } } );
 		}
 	},
 	not_ready: function () {
-		var player_id = Meteor.userId();
+		var player = Players.findOne({user_id: Meteor.userId()});
 
 		// Update current player's status
-		Players.update(player_id, { round_id: null });
+		Players.update( player._id, { $set: { round_id: null } } );
 
 		// Get the round the current player is in
-		var round_id = Rounds.findOne({status: 'waiting', round_players: { $in: [player_id] } } );
+		var round_id = Rounds.findOne({status: 'waiting', round_players: { $in: [player._id] } } );
 
 		// Remove current player from the round they are in
-		Rounds.update(round_id, {$pull: {round_players: player_id}});
+		Rounds.update( round_id, { $pull: {round_players: player._id } } );
 
 		// Remove all rounds that have no players (cleanup)
 		Rounds.remove({ round_players: { $size: 0 } } );

@@ -11,7 +11,7 @@ var game = function () {
 	return me && me.game_id && Games.findOne(me.game_id);
 }
 
-var round = function () {
+var current_round = function () {
 	var me = player();
 	return me && me.round_id && Rounds.findOne(me.round_id);
 }
@@ -19,13 +19,8 @@ var round = function () {
 // true if the current user is playing (false if waiting and ready to start a round, or in lobby or not logged in)
 var in_round = function () {
 	var me = player();
-	if (me && me.round_id) {
-		var round = Rounds.findOne(me.round_id);
-		if (round && round.state !== 'waiting') {
-			return true;
-		}
-	}
-	return false;
+	var round = me && me.round_id && Rounds.findOne(me.round_id);
+	return round && round.status !== 'waiting';
 }
 
 var displayName = function (user) {
@@ -92,7 +87,7 @@ Template.staging.show = function () {
 }
 
 Template.staging.chats = function () {
-	var chats = Chats.find({ game_id: game() }, { sort: { 'timestamp': -1 }, limit: 5 });
+	var chats = Chats.find({ game_id: game()._id }, { sort: { 'timestamp': -1 }, limit: 5 });
 	// we need to use reverse ordering to grab just the last few chats, but then we need to reverse the order again so the chats display oldest to newest. hence the mess below.
 	var reverse_chats = new Array();
 	chats.forEach( function (data) {
@@ -114,15 +109,20 @@ Template.staging.game_description = function () {
 	return game.description;
 }
 
+Template.staging.btn_primary_or_success = function () {
+	var round = current_round();
+	return (round && round.status === 'waiting') ? 'btn-success' : 'btn-primary';
+}
+
 Template.staging.events({
 	'click .game-leave': function (event, template) {
-		Meteor.call('leave', game());
+		Meteor.call('leave', game()._id);
 	},
 	'click .game-start': function (event, template) {
 		$('.game-start').toggleClass('btn-primary').toggleClass('btn-success');
 
 		if ($('.game-start').hasClass('btn-success') ) { // entered ready up state
-			Meteor.call('ready', game());
+			Meteor.call('ready', game()._id);
 		} else { // we've canceled our "ready up" state
 			Meteor.call('not_ready');
 		}
@@ -133,7 +133,7 @@ Template.staging.events({
 			var message = $('input.staging-chat-input').val().trim();
 			Chats.insert({
 				name: displayName(Meteor.user()),
-				game_id: game(),
+				game_id: game()._id,
 				message: message,
 				timestamp: new Date().getTime(),
 			});
