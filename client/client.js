@@ -181,6 +181,29 @@ Template.orps.status_results = function () {
 	return round && round.status && round.status === 'results';
 }
 
+//
+// Loading template
+//
+
+Template.loading.random_planet_name = function () {
+	prefixes = [
+		'Flur',
+		'Opnon',
+		'Shontoo',
+		'Vardon',
+		'Relko'
+	];
+	suffixes = [
+		'bord',
+		'dle',
+		'blick',
+		'pantard',
+		'vry'
+	];
+
+	return prefixes[Math.floor(Math.random()*prefixes.length)] + suffixes[Math.floor(Math.random()*suffixes.length)];
+}
+
 
 ////////////////////////////////
 ////////////////////////////////
