@@ -19,6 +19,18 @@ Meteor.methods({
 		});
 	},
 	leave: function (game_id) {
+		// Mark this player as "not_ready" in case they were waiting for a game
+		var player = Players.findOne({user_id: Meteor.userId()});
+		// Update current player's status
+		Players.update( player._id, { $set: { round_id: null } } );
+		// Get the round the current player is in
+		var round_id = Rounds.findOne({status: 'waiting', round_players: { $in: [player._id] } } );
+		// Remove current player from the round they are in
+		Rounds.update( round_id, { $pull: {round_players: player._id } } );
+		// Remove all rounds that have no players (cleanup)
+		Rounds.remove({ round_players: { $size: 0 } } );
+
+		// Remove this player from the game room
 		Players.remove({ user_id: Meteor.userId() });
 	},
 	ready: function (game_id) {
@@ -62,7 +74,13 @@ Meteor.methods({
 
 		// Remove all rounds that have no players (cleanup)
 		Rounds.remove({ round_players: { $size: 0 } } );
-	}
+	},
+
+	////////////////////////////
+	// DEBUG CODE
+	debug_delete_round: function (round_id) {
+		Rounds.remove({_id: round_id});
+	},
 });
 
 //

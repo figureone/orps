@@ -180,6 +180,11 @@ Template.debug.rounds = function () {
 	var rounds = Rounds.find();
 	return rounds;
 }
+Template.debug.events({
+	'click .debug-round-delete': function (event, template) {
+		Meteor.call('debug_delete_round', this._id);
+	},
+});
 // END DEBUG REMOVE /////////////
 ////////////////////////////////
 ////////////////////////////////

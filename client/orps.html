@@ -146,7 +146,7 @@
 		<p>Active rounds:</p>
 		<ul>
 			{{#each rounds }}
-				<li>{{timestamp}}, Status: {{status}} ({{_id}}), {{#each round_players}} {{.}}, {{/each}}</li>
+				<li><a class="close debug-round-delete" href="#">&times;</a> {{_id}}, Status: {{status}}. Users: {{#each round_players}} {{.}}, {{/each}}</li>
 			{{/each}}
 		</ul>
 	</div>
