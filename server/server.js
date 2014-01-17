@@ -101,6 +101,9 @@ Meteor.methods({
 			}
 		});
 		if (proceed) {
+			round.round_players.forEach( function (data) {
+				Players.update(data, { $set: { status: 'waiting' } } );
+			});
 			Rounds.update( round._id, { $set: { status: 'answering' } } );
 		}
 
@@ -134,6 +137,11 @@ Meteor.methods({
 				answer_correct: correct,
 			});
 		}
+	},
+	show_question: function (user_id, round_id) {
+		var player = Players.findOne( { user_id: user_id } );
+		var question = Questions.findOne( { player_id: player._id, round_id: round_id } );
+		return question;
 	},
 
 	////////////////////////////

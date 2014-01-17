@@ -174,8 +174,6 @@
 			{{> writing_player }}
 		{{/each}}
 	</div>
-	<div id="captions">
-	</div>
 	<div id="inputs">
 		<input type="button" class="btn {{btn_primary_or_success}} btn-large ready-question" value="Ready Up!" />
 
@@ -200,7 +198,6 @@
 			<input type="text" id="answer_c" value="" placeholder="Hit the Ready Up button when you're done!" />
 			<input type="button" id="answer_c_correct" class="mark-correct off" value="&#10003;" tabindex="-1" />
 		</div>
-
 	</div>
 	<div class="pdv flipped"></div>
 </template>
@@ -216,14 +213,35 @@
 			{{> answering_player }}
 		{{/each}}
 	</div>
-	<div id="captions">
-	</div>
 	<div id="inputs">
+		<input type="button" class="btn {{btn_primary_or_success}} btn-large ready-question" value="Ready Up!" />
+
+		<div class="question">
+			<textarea id="question" placeholder="" readonly="readonly">***</textarea>
+		</div>
+
+		<div class="answer">
+			<span class="letter">A</span>
+			<input type="text" id="answer_a" value="" placeholder="Write an answer here." />
+			<input type="button" id="answer_a_correct" class="mark-correct off" value="&#10003;" tabindex="-1" />
+		</div>
+
+		<div class="answer">
+			<span class="letter">B</span>
+			<input type="text" id="answer_b" value="" placeholder="Don't forget to mark which one is correct!" />
+			<input type="button" id="answer_b_correct" class="mark-correct off" value="&#10003;" tabindex="-1" />
+		</div>
+		
+		<div class="answer">
+			<span class="letter">C</span>
+			<input type="text" id="answer_c" value="" placeholder="Hit the Ready Up button when you're done!" />
+			<input type="button" id="answer_c_correct" class="mark-correct off" value="&#10003;" tabindex="-1" />
+		</div>
 	</div>
 	<div class="pdv flipped"></div>
 </template>
 <template name="answering_player">
-	<div class="avatar commander {{eva_status}} space-hover player-{{user_id}}">
+	<div class="avatar commander {{eva_status}} space-hover player-{{user_id}} {{is_writer}}" id="{{user_id}}">
 		{{display_name}}
 	</div>
 </template>

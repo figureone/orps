@@ -335,6 +335,21 @@ Template.answering.btn_primary_or_success = function () {
 	return (me && me.status === 'done') ? 'btn-success' : 'btn-primary';
 }
 
+Template.answering.events({
+	'click .avatar': function (event, template) {
+		var writer_user_id = $(event.srcElement).attr('id');
+		var round = current_round();
+		Session.set("writer", writer_user_id);
+		Meteor.call('show_question', writer_user_id, round._id, function (error, result) {
+			$('#question').html(result.question);
+			$('#answer_a').val(result.answer_a);
+			$('#answer_b').val(result.answer_b);
+			$('#answer_c').val(result.answer_c);
+			console.log(result);
+		});
+	},
+});
+
 Template.answering_player.eva_status = function () {
 	var player = get_player(this._id);
 	return (player && player.status === 'done') ? 'eva-done' : 'eva-waiting';
@@ -345,6 +360,13 @@ Template.answering_player.display_name = function () {
 	return displayName(player);
 }
 
+Template.answering_player.is_writer = function () {
+	var player = get_player(this._id);
+	if (player.user_id == Session.get("writer")) {
+		return 'is_writer';
+	}
+	return '';
+}
 
 ////////////////////////////////
 ////////////////////////////////
