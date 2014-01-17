@@ -120,11 +120,11 @@
 
 
 <template name="orps">
-	<div class="game-HUD">
-		<div class="game-HUD-comm">{{title}}</div>
-		<div class="game-HUD-timer">0:00</div>
-	</div>
 	{{#if show }}
+		<div class="game-HUD">
+			<div class="game-HUD-comm">{{title}}</div>
+			<div class="game-HUD-timer">0:00</div>
+		</div>
 		{{#if status_loading }}
 			{{> loading }}
 		{{/if}}
@@ -158,6 +158,23 @@
 	<div id="captions">
 	</div>
 	<div id="inputs">
+		<input type="button" class="btn {{btn_primary_or_success}} btn-large ready-question" value="Ready Up!" />
+		<br />
+
+		<textarea id="question" placeholder="Write your question here"></textarea>
+		<br />
+		
+		<input type="text" id="answer_a" value="" placeholder="Write an answer here." />
+		<input type="button" id="answer_a_correct" class="off" value="*" />
+		<br />
+		
+		<input type="text" id="answer_b" value="" placeholder="Don't forget to mark which one is correct!" />
+		<input type="button" id="answer_a_correct" class="off" value="*" />
+		<br />
+		
+		<input type="text" id="answer_c" value="" placeholder="Hit the Ready Up button when you're done!" />
+		<input type="button" id="answer_a_correct" class="off" value="*" />
+		<br />
 	</div>
 	<div class="pdv large"></div>
 </template>
