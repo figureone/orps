@@ -1,8 +1,10 @@
 <head>
 	<title>Outer Rim Postal Service</title>
+	<meta name="viewport" content="width=640">
 </head>
 
 <body>
+	<div id="main" class="container">
 	{{> header }}
 
 	{{> lobby }}
@@ -16,17 +18,15 @@
 	{{> footer }}
 
 	{{> debug }}
+	</div>
 </body>
 
 
 <template name="header">
-	<div id="header" class="row-fluid page-header">
-		<div class="span8">
-			<h1>Outer Rim Postal Service <small>ORPS</small></h1>
-		</div>
-		<div class="span4">
-			<div style="float: right; margin-right: 10px;">
-				{{loginButtons align="right"}}
+	<div id="header" class="page-header">
+			<div class="logo"></div>			
+			<div class="user-options-container">
+				{{loginButtons}}
 			</div>
 		</div>
 	</div>
@@ -35,13 +35,21 @@
 
 <template name="lobby">
 	{{#if show }}
-		<div class="row-fluid">
-			<ul class="games unstyled text-center">
-				{{#each games }}
-					{{> game}}
-				{{/each }}
-			</ul>
+	<div class="lobby">
+		<div class="title-box">
+			<div class="logo large"></div>
+			<h1>Outer Rim Postal Service</h1>
 		</div>
+		<h2 class="title-bar">Current Postings</h2>
+		<ul class="games">
+			{{#each games }}
+				{{> game}}
+			{{/each }}
+		</ul>
+
+		<div id="floater-one" class="avatar commander eva rotate-right"></div>
+		<div id="floater-two" class="avatar commander eva drift-left"></div>
+	</div>
 	{{/if}}
 </template>
 
@@ -53,7 +61,7 @@
 				<p class="game-description">{{description}}</p>
 				<p class="game-player-count">Players: <span class="badge badge-info">{{player_count}}</span></p>
 				{{#if currentUser }}
-					<input type="button" class="btn btn-primary btn-large game-join" value="Join" />
+					<input type="button" class="btn btn-primary btn-large game-join" value="Enter Room" />
 				{{/if}}
 			</div>
 		</div>
@@ -63,34 +71,43 @@
 
 <template name="staging">
 	{{#if show }}
-	<div class="row-fluid">
+
+	<!-- Job Cube & Contents -->
+	<div class="job-cube"></div>
+	<div class="job-cube-contents">
+		<input type="button" class="btn btn-primary btn-large game-leave" value="Return to Lobby" />
 		<h3 class="game-name">{{game_name}} <small>{{game_description}}</small></h3>
-	</div>
-	<div class="row-fluid">
-		<div class="span5 staging-animation-limbo">
+	
+		<div class="staging-animation-limbo">
 			<svg width="100%" height="200px" style="background: #ccc;">
 				<circle style="stroke-width:5px;fill:none;stroke:red;stroke-dasharray: 9, 5;stroke-opacity: .8;" cx="100" cy="100" r="50"></circle>
 			</svg>
 		</div>
-		<div class="span2 staging-completed-games">
-		</div>
-		<div class="span5 staging-chat">
-			<div class="row-fluid">
-				<div class="span12">
-					{{#each chats }}
-						{{> chat}}
-					{{/each}}
-				</div>
+	<div>
+
+	<!-- Ready Up! -->
+	<a class="btn btn-primary" href="#readyUp">Ready Up!</a>
+
+	<!-- Tabs: Chat and completed games -->
+	<div class="primary-interface">
+		<ul class="tabs">
+			<li class="active"><a href="#commboard">Commboard</a></li>
+			<li><a href="#completedGames">Completed Runs</a></li>
+		</ul>
+		<!-- Commboard (chat) -->
+		<div id="commboard" class="staging-chat">
+			{{#each chats }}
+				{{> chat}}
+			{{/each}}
+			<div class="input-append">
+				<input type="text" class="staging-chat-input span9" value="" placeholder="Type your message here and hit enter to send" />
+				<input type="button" class="staging-chat-send btn btn-primary" value="Send" />
 			</div>
-			<div class="row-fluid">
-				<div class="span12 input-append">
-					<input type="text" class="staging-chat-input span9" value="" placeholder="Type your message here and hit enter to send" />
-					<input type="button" class="staging-chat-send btn btn-primary" value="Send" />
-				</div>
-			</div>
 		</div>
+		<!-- Completed Games -->
+		<div id="#completedGames" class="staging-completed-games"></div>
 	</div>
-	<input type="button" class="btn btn-primary btn-large game-leave" value="Return to Lobby" />
+	
 	{{/if}}
 </template>
 
