@@ -249,6 +249,7 @@
 </template>
 
 <template name="debug">
+	{{#if show }}
 	<div id="debug" class="row-fluid">
 		<p>Logged in users:</p>
 		<ul>
@@ -276,4 +277,5 @@
 			{{/each}}
 		</ul>
 	</div>
+	{{/if}}
 </template>

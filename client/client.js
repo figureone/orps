@@ -350,6 +350,15 @@ Template.answering_player.display_name = function () {
 ////////////////////////////////
 // Debug template REMOVE REMOVE
 ////////////////////////////////
+Template.debug.show = function () {
+	var me = Meteor.user();
+	console.log(me);
+	if (me.services && me.services.google && me.services.google.email && ( me.services.google.email === 'prar@hawaii.edu' || me.services.google.email === 'jkhedani@hawaii.edu' ) ) {
+		return true;
+	}
+	return false;
+
+}
 Template.debug.debug_logged_in_users = function () {
 	return Meteor.users.find();
 }
