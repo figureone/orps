@@ -56,6 +56,7 @@ Meteor.methods({
 		Rounds.update( round._id, { $addToSet: { round_players: player._id } } );
 
 		// Move onto game if we have enough players
+		round = Rounds.findOne({_id: round._id});
 		if (round && round.round_players.length > 1) {
 			Rounds.update( round._id, { $set: { status: 'loading' } } );
 		}
