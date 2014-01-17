@@ -67,6 +67,30 @@
   -webkit-animation: driftleft 30s infinite linear;
 }
 /**
+ *	Space Hovering
+ *	Mimic some space hovering (like ship flying but more subtle)
+ */
+@-webkit-keyframes spacehover {
+  0% {
+    -webkit-transform: translate(0, 0);
+  }
+  25% {
+    -webkit-transform: translate(3px, 3px);
+  }
+  50% {
+    -webkit-transform: translate(-6px, 5px);
+  }
+  75% {
+    -webkit-transform: translate(7px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
+}
+.space-hover {
+  -webkit-animation: spacehover 8s infinite linear;
+}
+/**
  *	Rotations
  * 	Mimics floating in space
  */
@@ -190,8 +214,11 @@
 /**
  *	General Styles
  */
-body {
+html {
   background: url('/starry-night.png');
+}
+body {
+  background: url('/pdv-mk1-large.png') center 240% no-repeat;
   font-family: 'Munro', sans-serif;
   font-weight: normal;
   color: #FFF;
@@ -394,8 +421,8 @@ h2.title-bar {
   margin-top: 100px;
 }
 /**
- *	Transition Styles
+ *	Loading Styles
  */
-.pdv {
+.game-state-loading .pdv {
   margin: 40% auto;
 }
