@@ -196,6 +196,20 @@ Template.orps.show = function () {
 	return in_round();
 }
 
+Template.orps.title = function () {
+	var title = '';
+	var round = current_round();
+	if ( round.status === 'loading')
+		title = 'Flight checks confirmed. Delivering Package...';
+	else if ( round.status === 'writing')
+		title = 'Create a Question!';
+	else if ( round.status === 'answering')
+		title = 'Answer the Question!';
+	else if ( round.status === 'results')
+		title = 'Great job, kiddo!';
+	return title;
+}
+
 Template.orps.status_loading = function () {
 	var round = current_round();
 	return round && round.status && round.status === 'loading';
