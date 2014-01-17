@@ -299,6 +299,7 @@ body {
 	height: 97px;
 	margin: -55px 0 0 -35px;
 	position: fixed;
+	top: 0;
 	background: url('/game-HUD.png') no-repeat;
 	.game-HUD-comm {
 		min-width: 470px;
@@ -510,12 +511,16 @@ input, textarea {
  *	Game Styles
  *	Global Game Styles
  */
-#main[class*="game-state-"] #animations {
-	min-height: 400px;
-
-	.avatar {
-		margin-top: 100px;
-	}
+#main.game-state-writing,
+#main.game-state-answering,
+#main.game-state-results {
+	#animations {
+		min-height: 400px;
+		margin-top: 175px;
+		.avatar {
+			margin-top: 100px;
+		}
+	}	
 }
 
 #inputs {
