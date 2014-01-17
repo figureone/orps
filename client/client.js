@@ -272,10 +272,18 @@ Template.writing.players = function () {
 
 Template.writing.events({
 	'click .mark-correct': function (event, template) {
-console.log('click');
 		$('.mark-correct').removeClass('on').addClass('off');
 		$(event.srcElement).addClass('on');
 	},
+	'click .ready-question': function (event, template) {
+		$(event.srcElement).toggleClass('btn-success').toggleClass('btn-primary');
+console.log('.avatar.player-' + Meteor.userId());
+		if ( $(event.srcElement).hasClass('btn-success') ) {
+			$('.avatar.player-' + Meteor.userId()).addClass('eva-done').removeClass('eva');
+		} else {
+			$('.avatar.player-' + Meteor.userId()).addClass('eva').removeClass('eva-done');
+		}
+	}
 });
 
 Template.writing_player.display_name = function() {
