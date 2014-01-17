@@ -99,6 +99,32 @@ Meteor.methods({
 		var player = Players.findOne({user_id: Meteor.userId()});
 		return player.status;
 	},
+	submit_my_question: function (question_text, answer_a, answer_b, answer_c, correct) {
+		var player = Players.findOne({user_id: Meteor.userId()});
+		var round = Rounds.findOne( { _id: player.round_id } );
+		var question = Questions.findOne( { player_id: player._id, round_id: round._id } );
+		if ( question ) {
+			Questions.update(question._id, { $set: {
+				player_id: player._id,
+				round_id: round._id,
+				question: question_text,
+				answer_a: answer_a,
+				answer_b: answer_b,
+				answer_c: answer_c,
+				answer_correct: correct,
+			}});
+		} else {
+			Questions.insert({
+				player_id: player._id,
+				round_id: round._id,
+				question: question_text,
+				answer_a: answer_a,
+				answer_b: answer_b,
+				answer_c: answer_c,
+				answer_correct: correct,
+			});
+		}
+	},
 
 	////////////////////////////
 	// DEBUG CODE

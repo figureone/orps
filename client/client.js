@@ -277,18 +277,27 @@ Template.writing.btn_primary_or_success = function () {
 
 Template.writing.events({
 	'click .mark-correct': function (event, template) {
-		$('.mark-correct').removeClass('on').addClass('off');
-		$(event.srcElement).addClass('on');
+		$('.mark-correct.on').removeClass('on').addClass('off');
+		$(event.srcElement).removeClass('off').addClass('on');
 	},
 	'click .ready-question': function (event, template) {
+		var question = $('#question').val();
+		var answer_a = $('#answer_a').val();
+		var answer_b = $('#answer_b').val();
+		var answer_c = $('#answer_c').val();
+		var correct  = $('.answer input.mark-correct.on').attr('id');
+		correct = correct ? correct.replace('answer_', '').replace('_correct', '') : '';
 		Meteor.call('get_my_status', function (error, result) {
 			if (result === 'waiting')	{
 				Meteor.call('set_my_status', 'done');
+				Meteor.call('submit_my_question', question, answer_a, answer_b, answer_c, correct);
 			} else {
 				Meteor.call('set_my_status', 'waiting');
 			}
 		});
-	}
+		$('.mark-correct').removeClass('on').addClass('off');
+		$('#answer_'+correct+'_correct').removeClass('off').addClass('on');
+	},
 });
 
 Template.writing_player.eva_status = function () {
