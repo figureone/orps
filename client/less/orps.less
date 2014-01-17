@@ -1,0 +1,317 @@
+
+/**
+ *	ORPS
+ *	Outer Rim Postal Service
+ *	Developed with love from Paul Ryan and Justin Hedani
+ */
+
+@font-face {
+    font-family: 'Munro';
+    // src: url('/fonts/munro-webfont.eot');
+    // src: url('/fonts/munro-webfont.eot?#iefix') format('embedded-opentype'),
+    //      url('/fonts/munro-webfont.woff') format('woff'),
+    //      url('/fonts/munro-webfont.ttf') format('truetype');
+    src: url('/fonts/munro-webfont.svg#munroregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Munrosmall';
+    src: url('/fonts/munrosmall-webfont.eot');
+    src: url('/fonts/munrosmall-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/munrosmall-webfont.woff') format('woff'),
+         url('/fonts/munrosmall-webfont.ttf') format('truetype'),
+         url('/fonts/munrosmall-webfont.svg#munro_smallregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/**
+ *	Colors
+ */
+@glassGreen: rgb( 113, 219, 187 );
+@alertRed: rgb( 214, 69, 86 );
+
+@grayDark: rgb( 40, 40, 40 );
+
+/**
+ *	Mixins
+ */
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+#font-family {
+	.munro {
+		font-family: 'Munro', sans-serif;
+		font-weight: normal;
+	}
+	.munro-small {
+		font-family: 'Munrosmall', sans-serif;
+		font-weight: normal;	
+	}
+}
+
+/**
+ *	HA Animation Classes
+ *	Examples: http://css-tricks.com/snippets/css/keyframe-animation-syntax/
+ *	e.g. -webkit-animation: example 1s ease 1s 2 alternate;
+ *			 -webkit-animation: [name][duration][timing-function][delay][iteration-count][direction]
+ */
+
+/**
+ *	Beam In
+ *	Beams crew members in
+ */
+@-webkit-keyframes beamin {
+  0% { background: url('/beam.png') no-repeat; }
+  100%   { opacity: 1.0; }
+}
+.beamin {
+	-webkit-animation: beamin 3s ease 0s 1 alternate;
+}
+
+/**
+ *	Drifting
+ * 	Mimics floating in space
+ */
+@-webkit-keyframes driftleft {
+	from { -webkit-transform: translate(0,0) rotate(0deg); }
+  to { -webkit-transform: translate(-2000px, -100px) rotate(360deg); }
+}
+.drift-left {
+	-webkit-animation: driftleft 30s infinite linear;	
+}
+
+
+/**
+ *	Rotations
+ * 	Mimics floating in space
+ */
+@-webkit-keyframes rotateright {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes rotateleft {
+  from { -webkit-transform: rotate(360deg); }
+  to { -webkit-transform: rotate(0deg); }
+}
+.rotate-right {
+	-webkit-animation: rotateright 35s infinite linear;
+}
+.rotate-left {
+	-webkit-animation: rotateleft 65s infinite linear;
+}
+
+/**
+ *	Specific HA Animation Classes
+ */
+/**
+ *	Ship flying
+ */
+@-webkit-keyframes pdvfly {
+	0% 		{ -webkit-transform: translate(0,0) }
+	25% 	{ -webkit-transform: translate(5px,5px); }
+	50% 	{ -webkit-transform: translate(-8px,7px); }
+	75% 	{ -webkit-transform: translate(9px,-4px); }
+	100% 	{ -webkit-transform: translate(0,0); }
+}
+.pdvfly {
+	-webkit-animation: pdvfly 3s infinite linear;
+}
+
+/**
+ *	General Styles
+ */
+
+body {
+	background: url('/starry-night.png');
+	#font-family > .munro;
+	color: #FFF;
+}
+.container {
+	margin: 0 auto;
+	width: 640px;	
+}
+#main { position: relative; }
+#header {
+	padding: 13px 0;
+	.clearfix();
+	.logo { float: left; }
+	.user-options-container {
+		float: right;
+		#login-buttons {			
+			a {
+				display: block;
+				padding: 10px;
+				background: url('/options-gear.png') top right no-repeat;
+			}
+		}
+	}
+}
+
+/**
+ *	Avatars
+ */
+.avatar {
+	width: 108px;
+	height: 210px;
+	background: url('/avatar-commander.png') no-repeat;
+	&.commander {
+		background: url('/avatar-commander.png') no-repeat;
+		&.eva { background-position: -159px 0; }
+	}
+}
+.pdv {
+	&.small {
+		width: 351px;
+		height: 157px;
+		background: url('/pdv-mk1.png') no-repeat;
+	}
+}
+.asteroid {
+	width: 96px;
+	height: 84px;
+	background: url('/asteroid.png') no-repeat;
+}
+
+// Logo
+.logo {
+	width: 102px;
+	height: 44px;
+	background: url('/logo.png') no-repeat;
+	display: block;
+	&.large {
+		width: 450px;
+		height: 198px;
+		margin: 0 auto;
+		padding: 40px;
+		background: url('/logo-large.png') fadeout(@glassGreen, 40%) center center no-repeat;
+	}
+}
+// CTA Buttons
+.btn {
+	display: block;
+	border: 0;
+	padding: 20px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #FFF;
+	&.btn-primary {
+		font-size: 18px;
+		background: @alertRed;
+		&:hover { background: darken(@alertRed, 5%); }
+	}
+	&.btn-success {
+		background: blue;
+	}
+}
+
+/**
+ *	Typography
+ */
+a { text-decoration: none; }
+h2.title-bar {
+	display: block;
+	padding: 20px;
+	background: url('/panelling-dark-bg.png');
+}
+
+
+/**
+ *	Home / Lobby Styles
+ */
+.lobby {
+	.title-box {
+		width: 640px;
+		height: 335px;
+		background: url('/lobby-title-box.png') bottom center;
+		h1 { display: block; margin: 0 auto; }
+	}
+	ul.games {
+		.clearfix();
+		padding: 0;
+		li {
+			background: fadeout(@glassGreen, 40%);
+			list-style: none;
+			width: 50%;
+			float: left;
+			text-align: center;
+			.btn-primary { width: 100%; }
+		}
+	}
+	#floater-one {
+		position: absolute;
+		top: 440px;
+		left: -320px;
+		z-index: -9;
+	}
+	#floater-two {
+		position: fixed;
+		top: 120px;
+		right: -220px;
+		z-index: -9;
+	}
+}
+
+/**
+ *	Staging Styles
+ */
+.job-cube {
+	width: 777px;
+	height: 675px;
+	position: absolute;
+	left: -68px;
+	top: 0;
+	z-index: -9;
+	background: url('/job-cube.png') no-repeat;
+}
+.job-cube-contents {
+	background: fadeout(@glassGreen, 40%);
+}
+.primary-interface {
+	background: lighten(@grayDark, 40%);
+	ul.tabs {
+		padding: 0;
+		.clearfix();
+		li {
+			background: lighten(@grayDark, 10%);
+			list-style: none;
+			width: 50%;
+			float: left;
+			text-align: center;
+			padding: 20px 0;
+			&.active { background: @grayDark; }
+			a {
+				color: #FFF;
+			}
+		}
+	}
+}
+
+/**
+ *	Transition Styles
+ */
+.pdv {
+	margin: 40% auto;
+}
+
+/**
+ *	Game Styles
+ */
+
+
+
+
+
