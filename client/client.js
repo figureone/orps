@@ -210,11 +210,11 @@ Template.orps.title = function () {
 	var title = '';
 	var round = current_round();
 	if ( round.status === 'loading')
-		title = 'Flight checks confirmed. Delivering Package...';
+		title = 'Flight checks confirmed. Delivering EXAM... Oh no, asteroid spotted on a collision course!';
 	else if ( round.status === 'writing')
-		title = 'Create a Question!';
+		title = 'The EXAM was destroyed! We need to recreate it! Everyone, create a QUESTION!';
 	else if ( round.status === 'answering')
-		title = 'Answer the Question!';
+		title = 'Let\'s make sure our questions are good enough! Answer your teammate\'s QUESTIONS!';
 	else if ( round.status === 'results')
 		title = 'Great job, kiddo!';
 	return title;
