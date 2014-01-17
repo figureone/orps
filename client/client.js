@@ -23,6 +23,13 @@ var in_round = function () {
 	return round && round.status !== 'waiting';
 }
 
+// get the game state
+var game_state = function () {
+	var me = player();
+	var round = me && me.round_id && Rounds.findOne(me.round_id);
+	return round && round.status;
+}
+
 var displayName = function (user) {
 	if (user.profile && user.profile.name) {
 		return user.profile.name;
@@ -35,6 +42,31 @@ var displayName = function (user) {
 	}
 	return 'Default User';
 };
+
+//
+// Wrapper template
+//
+
+Template.wrapper.class_game_state = function () {
+	var state = 'unknown';
+
+	if ( ! Meteor.userId() )
+		state = 'not-logged-in';
+	else if ( ! game() )
+		state = 'lobby';
+	else if ( ! in_round() )
+		state = 'staging';
+	else if ( game_state() === 'loading' )
+		state = 'loading';
+	else if ( game_state() === 'writing' )
+		state = 'writing';
+	else if ( game_state() === 'answering' )
+		state = 'answering';
+	else if ( game_state() === 'results' )
+		state = 'results';
+
+	return 'game-state-' + state;
+}
 
 //
 // Lobby template

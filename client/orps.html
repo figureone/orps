@@ -4,21 +4,24 @@
 </head>
 
 <body>
-	<div id="main" class="container">
-	{{> header }}
-
-	{{> lobby }}
-
-	{{> staging }}
-
-	{{> orps }}
-
-	{{> footer }}
-
-	{{> debug }}
-	</div>
+	{{> wrapper }}
 </body>
 
+<template name="wrapper">
+	<div id="main" class="container {{class_game_state}}">
+		{{> header }}
+
+		{{> lobby }}
+
+		{{> staging }}
+
+		{{> orps }}
+
+		{{> footer }}
+
+		{{> debug }}
+	</div>
+</template>
 
 <template name="header">
 	<div id="header" class="page-header">
