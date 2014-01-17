@@ -290,7 +290,8 @@ body {
 		&:hover { background: darken(@alertRed, 5%); }
 	}
 	&.btn-success {
-		background: blue;
+		font-size: 18px;
+		background: @glassGreen;
 	}
 }
 .game-HUD {
@@ -300,12 +301,17 @@ body {
 	position: relative;
 	background: url('/game-HUD.png') no-repeat;
 	.game-HUD-comm {
+		min-width: 421px;
 		position: absolute;
 		top: 97px;
 		left: 36px;
-		padding: 20px;
+		padding: 30px;
 		color: #FFF;
-		background-color: fadeout(@screenBlue, 20%);
+		background-color: fadeout(@screenBlue, 40%);
+		small {
+			display: block;
+			text-transform: uppercase;
+		}
 	}
 }
 
@@ -514,10 +520,17 @@ input, textarea {
 
 /**
  *	Loading Styles
+ *	Template #3
  */
 .game-state-loading {
-	.pdv {
-		margin: 40% auto;
+	#animations {
+		.pdv {
+			margin: 200px auto 0;
+		}
+	}
+	#captions {
+		text-align: center;
+		margin-bottom: 200px;
 	}
 }
 

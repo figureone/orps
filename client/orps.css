@@ -300,7 +300,8 @@ body {
   background: #d13043;
 }
 .btn.btn-success {
-  background: blue;
+  font-size: 18px;
+  background: #71dbbb;
 }
 .game-HUD {
   width: 710px;
@@ -575,7 +576,12 @@ textarea {
 }
 /**
  *	Loading Styles
+ *	Template #3
  */
-.game-state-loading .pdv {
-  margin: 40% auto;
+.game-state-loading #animations .pdv {
+  margin: 200px auto 0;
+}
+.game-state-loading #captions {
+  text-align: center;
+  margin-bottom: 200px;
 }
