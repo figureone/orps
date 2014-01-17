@@ -104,7 +104,7 @@
 	25% 	{ -webkit-transform: translate(3px,3px); }
 	50% 	{ -webkit-transform: translate(-6px,5px); }
 	75% 	{ -webkit-transform: translate(7px,-2px); }
-	100% 	{ -webkit-transform: translate(0,0); }
+	100% 	{ -webkit-transform: translate(0,0);  }
 }
 .space-hover {
 	-webkit-animation: spacehover 8s infinite linear;
@@ -142,18 +142,31 @@
 	75% 	{ -webkit-transform: translate(9px,-4px); }
 	100% 	{ -webkit-transform: translate(0,0); }
 }
-.pdvfly {
-	-webkit-animation: pdvfly 3s infinite linear;
+@-webkit-keyframes pdvflyspin {
+	0% 		{ -webkit-transform: rotate(0deg); background: url('/pdv-damaged.png') 60px 0; }
+	100% 	{ -webkit-transform: rotate(360deg); background: url('/pdv-damaged.png') 60px 0; }
 }
+.pdvfly {
+	-webkit-animation:
+		pdvfly 3.0s 0s linear,
+		pdvflyspin 4.0s 2.0s infinite linear;
+}
+
 /**
  *	Asteroid Smash
  */
 @-webkit-keyframes smash {
 	0% { -webkit-transform: translate(0,0); }
-	100% { -webkit-transform: translate(3000px,3000px);}
+	100% { -webkit-transform: translate(250px,500px); }
+}
+@-webkit-keyframes boom {
+	0% { background: url('/boom.png'); width: 186px; height: 193px; }
+	100% { background: url('/boom.png'); width: 186px; height: 193px; opacity: 0; }
 }
 .smash {
-	-webkit-animation: smash 3s infinite linear;
+	-webkit-animation:
+		smash 3s 0s 1 linear,
+		boom 1.0s 2.0s 1 linear;
 }
 
 /**
@@ -162,7 +175,7 @@
 
 
 /**
- *	Walking
+ *	Jumping
  */
 
 @-webkit-keyframes walkshortleft {
@@ -172,7 +185,7 @@
 	75%  { -webkit-transform: translate(10px,0); }
 	100% { -webkit-transform: translate(0,0);}
 }
-.walk-short-left {
+.jumping {
 	-webkit-animation: walkshortleft 5s infinite linear;
 }
 // @-webkit-keyframes walkshortleft {
@@ -208,6 +221,8 @@
 		width: 351px;
 		height: 157px;
 		background: url('/pdv-mk1.png') no-repeat;
+		z-index: -999;
+		position: relative;
 	}
 	&.flipped {
 		width: 800px;
@@ -225,6 +240,9 @@
 	width: 96px;
 	height: 84px;
 	background: url('/asteroid.png') no-repeat;
+	position: fixed;
+	top: -84px;
+	z-index: -99;
 }
 
 /**
@@ -530,7 +548,7 @@ input, textarea {
 	background-color: @grayDark;
 	// All "ready up" buttons
 	input[class*="ready"] {
-		margin: -78px auto 20px;
+		margin: -80px auto 20px;
 	}
 }
 
@@ -541,6 +559,7 @@ input, textarea {
  */
 .game-state-loading {
 	#animations {
+		margin-top: 340px;
 		.pdv {
 			margin: 200px auto 0;
 		}
