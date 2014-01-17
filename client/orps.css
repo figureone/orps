@@ -284,6 +284,7 @@ h2.title-bar {
 }
 /**
  *	Home / Lobby Styles
+ *	Template #1
  */
 .lobby .title-box {
   width: 640px;
@@ -383,11 +384,18 @@ h2.title-bar {
   float: left;
 }
 /**
+ *	Game Styles
+ *	Global Game Styles
+ */
+#main[class*="game-state-"] #animations {
+  min-height: 400px;
+}
+#main[class*="game-state-"] #animations .avatar {
+  margin-top: 100px;
+}
+/**
  *	Transition Styles
  */
 .pdv {
   margin: 40% auto;
 }
-/**
- *	Game Styles
- */
