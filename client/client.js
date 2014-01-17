@@ -101,6 +101,15 @@ Template.staging.events({
 	'click .game-leave': function (event, template) {
 		Meteor.call('leave', game());
 	},
+	'click .game-start': function (event, template) {
+		$('.game-start').toggleClass('btn-primary').toggleClass('btn-success');
+
+		if ($('.game-start').hasClass('btn-success') ) { // entered ready up state
+			Meteor.call('ready', game());
+		} else { // we've canceled our "ready up" state
+			Meteor.call('not_ready');
+		}
+	},
 	'keyup .staging-chat-input': function (event, template) {
 		if ( event.which == 13) { // eventnter key
 			event.preventDefault();
@@ -139,6 +148,10 @@ Template.debug.debug_logged_in_users = function () {
 Template.debug.players = function () {
 	var players = Players.find();
 	return players;
+}
+Template.debug.rounds = function () {
+	var rounds = Rounds.find();
+	return rounds;
 }
 // END DEBUG REMOVE /////////////
 ////////////////////////////////

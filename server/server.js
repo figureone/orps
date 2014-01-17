@@ -10,16 +10,53 @@
 // });
 
 Meteor.methods({
-	join: function(game_id) {
+	join: function (game_id) {
 		Players.insert({
 			name: displayName(Meteor.user()),
-			game_id: game_id,
 			user_id: Meteor.userId(),
+			game_id: game_id,
+			round_id: null,
 		});
 	},
-	leave: function(game_id) {
+	leave: function (game_id) {
 		Players.remove({ user_id: Meteor.userId() });
 	},
+	ready: function (game_id) {
+		var player_id = Meteor.userId();
+
+		// If there's already players waiting
+		var round_id = Rounds.findOne({status: 'waiting'});
+
+		// if there isn't a game in the waiting state, create a new one
+		if (!round_id) {
+			round_id = Rounds.insert({
+				timestamp: new Date().getTime(),
+				status: 'waiting',
+				round_players: [],
+			});
+		}
+
+		// Update current player's status
+		Players.update(player_id, { round_id: round_id });
+
+		// Add current player to (new) round
+		Rounds.update(round_id, {$addToSet: {round_players: player_id.toString() }});
+	},
+	not_ready: function () {
+		var player_id = Meteor.userId();
+
+		// Update current player's status
+		Players.update(player_id, { round_id: null });
+
+		// Get the round the current player is in
+		var round_id = Rounds.findOne({status: 'waiting', round_players: { $in: [player_id] } } );
+
+		// Remove current player from the round they are in
+		Rounds.update(round_id, {$pull: {round_players: player_id}});
+
+		// Remove all rounds that have no players (cleanup)
+		Rounds.remove({ round_players: { $size: 0 } } );
+	}
 });
 
 //

@@ -9,9 +9,7 @@
 
 	{{> staging }}
 
-	{{> animations }}
-	{{> captions }}
-	{{> inputs }}
+	{{> orps }}
 
 	{{> footer }}
 
@@ -91,6 +89,7 @@
 		</div>
 	</div>
 	<input type="button" class="btn btn-primary btn-large game-leave" value="Return to Lobby" />
+	<input type="button" class="btn btn-primary btn-large game-start" value="Ready Up!" />
 	{{/if}}
 </template>
 
@@ -99,6 +98,13 @@
 		<div class="timestamp pull-right"><small>{{timestamp_formatted}}</small></div>
 		<strong>{{name}}</strong>: {{message}}
 	</div>
+</template>
+
+
+<template name="orps">
+	{{> animations }}
+	{{> captions }}
+	{{> inputs }}
 </template>
 
 
@@ -134,6 +140,11 @@
 				<li>{{name}}, Game: {{game_id}} ({{_id}})</li>
 			{{/each}}
 		</ul>
+		<p>Active rounds:</p>
+		<ul>
+			{{#each rounds }}
+				<li>{{timestamp}}, Status: {{status}} ({{_id}}), {{#each round_players}} {{.}}, {{/each}}</li>
+			{{/each}}
+		</ul>
 	</div>
 </template>
-
