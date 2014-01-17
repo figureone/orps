@@ -298,20 +298,30 @@ body {
 	width: 710px;
 	height: 97px;
 	margin: -55px 0 0 -35px;
-	position: relative;
+	position: fixed;
 	background: url('/game-HUD.png') no-repeat;
 	.game-HUD-comm {
-		min-width: 421px;
+		min-width: 470px;
 		position: absolute;
 		top: 97px;
 		left: 36px;
-		padding: 30px;
+		padding: 25px 30px;
 		color: #FFF;
+		font-size: 21px;
 		background-color: fadeout(@screenBlue, 40%);
 		small {
 			display: block;
 			text-transform: uppercase;
 		}
+	}
+	.game-HUD-timer {
+		position: absolute;
+		top: 97px;
+		right: 35px;
+		padding: 30px;
+		color: #FFF;
+		font-size: 29px;
+		background-color: fadeout(@alertRed, 40%);
 	}
 }
 
