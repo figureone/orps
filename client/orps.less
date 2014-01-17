@@ -109,6 +109,9 @@
 .space-hover {
 	-webkit-animation: spacehover 8s infinite linear;
 }
+.space-hover-reverse {
+	-webkit-animation: spacehover 8s infinite alternate backwards;
+}
 
 /**
  *	Rotations
@@ -136,7 +139,7 @@
  *	Ship flying
  */
 @-webkit-keyframes pdvfly {
-	0% 		{ -webkit-transform: translate(0,0) }
+	0% 		{ -webkit-transform: translate(0,0); }
 	25% 	{ -webkit-transform: translate(5px,5px); }
 	50% 	{ -webkit-transform: translate(-8px,7px); }
 	75% 	{ -webkit-transform: translate(9px,-4px); }
@@ -148,7 +151,7 @@
 }
 .pdvfly {
 	-webkit-animation:
-		pdvfly 3.0s 3.0s linear,
+		pdvfly 3.0s 0s linear,
 		pdvflyspin 4.0s 2.0s infinite linear;
 }
 
@@ -552,14 +555,14 @@ input, textarea {
 			height: 575px;
 			background: url('/spacevert-one.png') no-repeat;
 			top: 120px;
-			margin-left: 500px;
+			margin-left: 400px;
 		}
 		&.two {
 			width: 380px;
 			height: 644px;
 			background: url('/spacevert-two.png') no-repeat;
 			top: 80px;
-			margin-left: -900px;
+			margin-left: -800px;
 		}
 	}
 
