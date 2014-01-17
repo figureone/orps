@@ -352,7 +352,6 @@ Template.answering_player.display_name = function () {
 ////////////////////////////////
 Template.debug.show = function () {
 	var me = Meteor.user();
-	console.log(me);
 	if (me.services && me.services.google && me.services.google.email && ( me.services.google.email === 'prar@hawaii.edu' || me.services.google.email === 'jkhedani@hawaii.edu' ) ) {
 		return true;
 	}
