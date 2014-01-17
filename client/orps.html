@@ -103,10 +103,30 @@
 
 <template name="orps">
 	{{#if show }}
-		zing.
-		{{> animations }}
-		{{> captions }}
-		{{> inputs }}
+		{{#if status_loading }}
+			loading.
+			{{> animations }}
+			{{> captions }}
+			{{> inputs }}
+		{{/if}}
+		{{#if status_writing }}
+			writing.
+			{{> animations }}
+			{{> captions }}
+			{{> inputs }}
+		{{/if}}
+		{{#if status_answering }}
+			answering.
+			{{> animations }}
+			{{> captions }}
+			{{> inputs }}
+		{{/if}}
+		{{#if status_results }}
+			results.
+			{{> animations }}
+			{{> captions }}
+			{{> inputs }}
+		{{/if}}
 	{{/if}}
 </template>
 

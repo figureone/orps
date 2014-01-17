@@ -164,6 +164,23 @@ Template.orps.show = function () {
 	return in_round();
 }
 
+Template.orps.status_loading = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'loading';
+}
+Template.orps.status_writing = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'writing';
+}
+Template.orps.status_answering = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'answering';
+}
+Template.orps.status_results = function () {
+	var round = current_round();
+	return round && round.status && round.status === 'results';
+}
+
 
 ////////////////////////////////
 ////////////////////////////////
