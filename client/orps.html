@@ -24,10 +24,9 @@
 
 <template name="header">
 	<div id="header" class="page-header">
-			<a href="#" class="game-leave"><div class="logo"></div></a>			
-			<div class="user-options-container">
-				{{loginButtons}}
-			</div>
+		<a href="#" class="game-leave"><div class="logo"></div></a>
+		<div class="user-options-container">
+			{{loginButtons}}
 		</div>
 	</div>
 </template>
@@ -112,11 +111,11 @@
 		<!-- Completed Games -->
 		<div id="completedGames" class="staging-completed-games">
 			<div class="completed-game-package"><span>Question Set #1<small>Delivered 1.15.2014</small></span></div>
-			<div class="completed-game-package"><span>Question Set #2<small>Delivered 1.15.2014</small></div>
-			<div class="completed-game-package"><span>Question Set #3<small>Delivered 1.16.2014</small></div>
-			<div class="completed-game-package"><span>Question Set #4<small>Delivered 1.16.2014</small></div>
-			<div class="completed-game-package"><span>Question Set #5<small>Delivered 1.17.2014</small></div>
-			<div class="completed-game-package"><span>Question Set #6<small>Delivered 1.17.2014</small></div>
+			<div class="completed-game-package"><span>Question Set #2<small>Delivered 1.15.2014</small></span></div>
+			<div class="completed-game-package"><span>Question Set #3<small>Delivered 1.16.2014</small></span></div>
+			<div class="completed-game-package"><span>Question Set #4<small>Delivered 1.16.2014</small></span></div>
+			<div class="completed-game-package"><span>Question Set #5<small>Delivered 1.17.2014</small></span></div>
+			<div class="completed-game-package"><span>Question Set #6<small>Delivered 1.17.2014</small></span></div>
 		</div>
 	</div>
 
@@ -275,7 +274,7 @@
 		<p>Logged in users:</p>
 		<ul>
 			{{#each debug_logged_in_users }}
-				<li>{{profile.name}} ({{services.google.email}}{{emails.0.address}}) ({{_id}})</li>
+				<li>{{profile.name}} ({{services.google.email}}{{service.email}}) ({{_id}})</li>
 			{{/each}}
 		</ul>
 		<p>Players in games:</p>
